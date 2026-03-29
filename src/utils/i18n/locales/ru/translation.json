@@ -1,0 +1,18 @@
+{
+  "hello": "Privet",
+  "code":"Штрих-код",
+ "collection":"Коллекция", 
+ "model":"Модель", 
+ "size":"Размер", 
+ "count":"Клтв", 
+ "shape":"Форма", 
+ "style":"Стиль", 
+ "color":"Цвет", 
+ "price":"Цена", 
+ "actions":"Действие",
+"type-corpet":"Тип ковер",
+"country":"Страна",
+"Suppliers":"Поставщики",
+"search":"Поиск",
+"isMetric":"Тип ковра"
+}
