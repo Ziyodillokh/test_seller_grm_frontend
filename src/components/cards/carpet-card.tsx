@@ -6,6 +6,7 @@ import { toast } from "sonner";
 
 import useOrderBasket from "@/pages/hame/action";
 import { apiRoutes } from "@/service/apiRoutes";
+import { minio_img_url } from "@/constants";
 import { useMeStore } from "@/store/me-store";
 
 import { BeigeIcons, BusketIcons } from "../icons";
@@ -98,7 +99,7 @@ const CarpetCard: React.FC<ICarpetCard> = ({
           <img
             className="w-full"
             style={{ aspectRatio: "0.67/1" }}
-            src={"https://s3.gilam-market.uz" + img}
+            src={minio_img_url + img}
           />
         ) : (
           <div

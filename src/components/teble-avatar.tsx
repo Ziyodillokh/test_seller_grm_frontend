@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Check, CircleAlert, X } from "lucide-react";
 
+import { minio_img_url } from "@/constants";
+
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 
@@ -16,7 +18,7 @@ export default function TebleAvatar({name,size, className,status="panding",url}:
     <div className={`${className && className}   relative`}>
       <Avatar className={`w-[${size|| 50}px] border-white border-[2px]  h-[${ size || 50}px]`}>
             <AvatarImage
-              src={"https://s3.gilam-market.uz" + url || undefined}
+              src={minio_img_url + url || undefined}
             />
             <AvatarFallback className="bg-primary text-white  flex items-center justify-center">
               {name?.[0]}

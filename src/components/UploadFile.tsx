@@ -3,6 +3,7 @@
 import { ImageOff, Loader, PencilLine } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { minio_img_url } from "@/constants";
 import { useMeStore } from "@/store/me-store";
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -82,7 +83,7 @@ export const UploadFile = ({
           {localUrl? (
             <AvatarImage
               src={
-                "https://s3.gilam-market.uz" +localUrl || undefined
+                minio_img_url +localUrl || undefined
               }
               alt="@shadcn"
             />
@@ -112,7 +113,7 @@ export const UploadFile = ({
             style={{ aspectRatio: "1/1" }}
              className="flex items-center cursor-pointer  max-w-[300px] mx-auto border-border border justify-center flex-col"
             src={
-             "https://s3.gilam-market.uz" +localUrl || undefined
+             minio_img_url +localUrl || undefined
            }/>:<>
             { isloading? <Loader className="text-primary text-[20px] w-[60px] h-[60px]" />: <ImageOff className="text-primary text-[20px] w-[60px] h-[60px]" />}
              <p className="text-[18px] font-semibold text-primary mt-2">Нет фото</p></>

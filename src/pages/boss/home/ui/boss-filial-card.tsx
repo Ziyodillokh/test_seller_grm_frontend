@@ -1,6 +1,7 @@
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { useState } from "react";
 
+import { minio_img_url } from "@/constants";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 
@@ -41,7 +42,7 @@ export default function BossFilialCard({
       <div className="flex gap-2 items-center">
        {(name || avatar) ? <Avatar className="w-[48px] border-border flex items-center justify-center border h-[48px] ">
             <AvatarImage
-              src={"https://s3.gilam-market.uz" + avatar || undefined}
+              src={minio_img_url + avatar || undefined}
               alt="@shadcn"
             />
             <AvatarFallback className="w-full text-center bg-transparent">

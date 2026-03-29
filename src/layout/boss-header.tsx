@@ -7,6 +7,7 @@ import { LineBlueIcons, LineRedIcons } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getAllData } from "@/service/apiHelpers";
 import { apiRoutes } from "@/service/apiRoutes";
+import { minio_img_url } from "@/constants";
 import { useMeStore } from "@/store/me-store";
 
 type TPlanYearMonthly = {
@@ -122,7 +123,7 @@ export default function BossHeader() {
                 {meUser?.avatar?.path ? (
                   <AvatarImage
                     src={
-                      "https://s3.gilam-market.uz" + meUser?.avatar?.path ||
+                      minio_img_url + meUser?.avatar?.path ||
                       undefined
                     }
                     alt="@shadcn"

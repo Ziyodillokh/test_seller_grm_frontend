@@ -12,6 +12,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getAllData } from "@/service/apiHelpers";
 import { apiRoutes } from "@/service/apiRoutes";
+import { minio_img_url } from "@/constants";
 import { useMeStore } from "@/store/me-store";
 
 import Weather from "./weather";
@@ -92,7 +93,7 @@ export default function Header() {
                 {meUser?.avatar?.path ? (
                   <AvatarImage
                     src={
-                      "https://s3.gilam-market.uz" + meUser?.avatar?.path ||
+                      minio_img_url + meUser?.avatar?.path ||
                       undefined
                     }
                     alt="@shadcn"
