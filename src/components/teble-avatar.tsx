@@ -17,9 +17,9 @@ export default function TebleAvatar({name,size, className,status="panding",url}:
   return (
     <div className={`${className && className}   relative`}>
       <Avatar className={`w-[${size|| 50}px] border-white border-[2px]  h-[${ size || 50}px]`}>
-            <AvatarImage
-              src={minio_img_url + url || undefined}
-            />
+            {url ? (
+              <AvatarImage src={minio_img_url + url} />
+            ) : null}
             <AvatarFallback className="bg-primary text-white  flex items-center justify-center">
               {name?.[0]}
             </AvatarFallback>

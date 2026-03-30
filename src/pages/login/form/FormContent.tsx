@@ -8,7 +8,7 @@ export default function LoginFormContent({isPending}:{isPending:boolean}) {
     <div className="w-full px-[20px] mt-[46px] m-auto max-w-[500px]">
       <div className="flex  gap-[92px]">
         <div className="w-full  max-w-[360px]">
-          <img src="/images/logo.svg" className="w-[175px] h-[115px]" alt="image" />
+          <img src={`${import.meta.env.BASE_URL}images/logo.svg`} className="w-[175px] h-[115px]" alt="image" />
           <p className="text-foreground px-[35px] leading-[17px] text-[15px] mb-[35px]">
           Biznesingiz o‘sishi uchun: ishlab chiqarish, ombor, savdo va nazorat jarayonlarini avtomatlashtiring.
           </p>

@@ -41,10 +41,7 @@ export default function BossFilialCard({
     <>
       <div className="flex gap-2 items-center">
        {(name || avatar) ? <Avatar className="w-[48px] border-border flex items-center justify-center border h-[48px] ">
-            <AvatarImage
-              src={minio_img_url + avatar || undefined}
-              alt="@shadcn"
-            />
+            {avatar ? <AvatarImage src={minio_img_url + avatar} alt="avatar" /> : null}
             <AvatarFallback className="w-full text-center bg-transparent">
               {name?.split('')?.[0]}
             </AvatarFallback>

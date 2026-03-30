@@ -80,12 +80,10 @@ export const UploadFile = ({
     <div className="rounded-[12px]">
      {type == 'avatar'?  <div className="relative flex items-center mx-auto justify-center border-border border rounded-full  w-[100px] h-[100px]">
         <Avatar className="w-[100px] mx-auto h-[100px]">
-          {localUrl? (
+          {localUrl ? (
             <AvatarImage
-              src={
-                minio_img_url +localUrl || undefined
-              }
-              alt="@shadcn"
+              src={minio_img_url + localUrl}
+              alt="avatar"
             />
           ) : (
             <AvatarFallback className=" bg-transparent">

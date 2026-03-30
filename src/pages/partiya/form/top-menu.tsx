@@ -64,14 +64,14 @@ export default function TopMenu() {
             width={55}
             height={58}
             className="h-[58px]"
-            src="/images/scaner1.png"
+            src={`${import.meta.env.BASE_URL}images/scaner1.png`}
           />
           <p className="mt-2.5 text-[17px] text-white font-semibold">Skaner</p>
           <img
             width={143}
             height={105}
             className="absolute bottom-0 right-0"
-            src="/images/mask.png"
+            src={`${import.meta.env.BASE_URL}images/mask.png`}
           />
         </div>
       </Link>
