@@ -2,32 +2,32 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import QrTabs from "./qr-tabs";
 
+const base = import.meta.env.BASE_URL;
 const Menu = [
     {
       id:1,
-      image:'/images/1.png',
+      image: base + 'images/1.png',
       text:"Hisobot",
       link:'/reports',
     },
     {
       id:2,
-      image:'/images/2.png',
+      image: base + 'images/2.png',
       text:"Mijozlar",
       link:'/client',
     },
     {
       id:3,
-      image:'/images/3.png',
+      image: base + 'images/3.png',
       text:"Transfer",
       link:'/home/transfer',
     },
     {
       id:4,
-      image:'/images/4.png',
+      image: base + 'images/4.png',
       text:"Sotish",
       link:'/home',
     },
-  
   ] 
 export default function HomeMenu() {
   const navigate = useNavigate();
