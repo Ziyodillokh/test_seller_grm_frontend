@@ -50,7 +50,7 @@ export default function CarpetSinglePage() {
       queryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasketCounts] });
       
       toast.success("Продукт добавлено успешно!");
-      window.location.replace(`/home`);
+      window.location.replace(import.meta.env.BASE_URL + "home");
     },
   });
   const { mutate: countMutate ,isPending:CountPending } = useCountChange({

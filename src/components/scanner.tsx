@@ -32,7 +32,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
       toast.success("Продукт добавлено успешно!");
-      window.location.replace(`/`);
+      window.location.replace(import.meta.env.BASE_URL);
     },
   });
 
@@ -67,7 +67,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
             if(type === "busket"){
               setResult(barcodes[0].rawValue);
             }else{
-              window.location.replace(`/${link}?id=${barcodes[0].rawValue}&type=${type}&isTransfer=${isTransfer}`);
+              window.location.replace(`${import.meta.env.BASE_URL}${link}?id=${barcodes[0].rawValue}&type=${type}&isTransfer=${isTransfer}`);
             }
           } else {
             setError("Код не найден!");
@@ -102,7 +102,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
               if(type === "busket"){
                 setResult(decodedText)
               }else{
-                window.location.replace(`/${link}?id=${decodedText}&type=${type}&isTransfer=${isTransfer}`);
+                window.location.replace(`${import.meta.env.BASE_URL}${link}?id=${decodedText}&type=${type}&isTransfer=${isTransfer}`);
               }
             },
             () => {}
@@ -119,10 +119,10 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
       if (Capacitor.isNativePlatform()) {
         // Stop native scanner
         BarcodeScanner.stopScan().catch(() => {});
-        window.location.replace(`/${link}`);
+        window.location.replace(`${import.meta.env.BASE_URL}${link}`);
       } else if (html5QrCodeRef.current) {
         html5QrCodeRef.current.stop().catch(() => {});
-        window.location.replace(`/${link}`);
+        window.location.replace(`${import.meta.env.BASE_URL}${link}`);
       }
     
     };
@@ -164,7 +164,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
                   toast.error("Продукт не найден!");
                 }
               } else {
-                window.location.replace(`/${link}?id=${result}&type=${type}`);
+                window.location.replace(`${import.meta.env.BASE_URL}${link}?id=${result}&type=${type}`);
               }
             }}
             className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-orange-500 text-white px-6 py-2 rounded-md text-center text-lg font-semibold shadow-md"

@@ -55,15 +55,15 @@ export default function Layout() {
 
   useEffect(() => {
     if (!token) {
-      window.location.replace("/login");
-    } else if (pathname.pathname == "/") {
+      window.location.replace(import.meta.env.BASE_URL + "login");
+    } else if (pathname.pathname == "/" || pathname.pathname == import.meta.env.BASE_URL) {
       if (!meUser) {
         navigate("/");
       } else {
         if (!parmitionsUser?.includes(meUser?.position?.role)) {
           removeToken();
           removeUserMe();
-          window.location.replace("/login");
+          window.location.replace(import.meta.env.BASE_URL + "login");
         }
         if (meUser?.position?.role === 12) {
           navigate("/boss/home");

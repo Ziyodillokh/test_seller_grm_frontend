@@ -16,7 +16,7 @@ const LoginForm = () => {
   const { mutate,isPending } = useAuthMutation({
     onSuccess: (res) => {
       setToken(res?.accessToken);
-      window.location.replace("/");
+      window.location.replace(import.meta.env.BASE_URL);
     },
   });
 
