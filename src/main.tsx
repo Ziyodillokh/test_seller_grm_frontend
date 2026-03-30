@@ -16,7 +16,7 @@ import QueryProvider from "./providers/QueryProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/seller">
       <NuqsAdapter>
         <QueryProvider>
           <ThemeProvider 

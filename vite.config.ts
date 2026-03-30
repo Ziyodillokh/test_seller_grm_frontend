@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  base: '/seller/',
   plugins: [
     react(),
     VitePWA({
@@ -28,7 +29,7 @@ export default defineConfig({
         ],
         theme_color: "#ffffff",
         background_color: "#ffffff",
-        start_url: "/",
+        start_url: "/seller/",
         display: "standalone",
       },
       // ✅ BU YERDA limitni oshiryapmiz:
