@@ -147,7 +147,7 @@ export default function BossHeader() {
             className="flex cursor-pointer w-full text-[16px] text-primary border-x border-border gap-1 items-center px-2.5 py-[15px]"
           >
             <ChevronLeft />
-            {location?.pathname == "/chatGPT" ? "AI Yordamchi" : "Orqaga"}
+            {location?.pathname == "/voiceChat" ? "AI Yordamchi" : "Orqaga"}
           </div>
         )}
       </header>

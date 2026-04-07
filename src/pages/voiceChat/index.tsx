@@ -44,6 +44,7 @@ export default function VoiceChat() {
 
   const [localMessages, setLocalMessages] = useState<IMessage[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
+  const [isAiSpeaking, setIsAiSpeaking] = useState(false);
 
   /* ---- TTS queue refs ---- */
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -114,6 +115,7 @@ export default function VoiceChat() {
     isPlayingRef.current = false;
     pendingTextRef.current = "";
     ttsActiveRef.current = false;
+    setIsAiSpeaking(false);
   }, [stopCurrentAudio]);
 
   const tryPlayNext = useCallback(() => {
@@ -128,6 +130,7 @@ export default function VoiceChat() {
       return;
     }
     isPlayingRef.current = true;
+    setIsAiSpeaking(true);
     currentAudioRef.current = entry;
     entry.onended = () => {
       isPlayingRef.current = false;
@@ -136,7 +139,7 @@ export default function VoiceChat() {
       audioQueueRef.current.delete(idx);
       currentAudioRef.current = null;
       if (!ttsActiveRef.current && audioQueueRef.current.size === 0) {
-        // all done
+        setIsAiSpeaking(false);
       } else {
         tryPlayNext();
       }
@@ -146,10 +149,14 @@ export default function VoiceChat() {
       nextPlayIdxRef.current++;
       audioQueueRef.current.delete(idx);
       currentAudioRef.current = null;
+      if (!ttsActiveRef.current && audioQueueRef.current.size === 0) {
+        setIsAiSpeaking(false);
+      }
       tryPlayNext();
     };
     entry.play().catch(() => {
       isPlayingRef.current = false;
+      setIsAiSpeaking(false);
     });
   }, []);
 
@@ -403,7 +410,7 @@ export default function VoiceChat() {
       </div>
 
       {/* ===== Input + Voice Panel ===== */}
-      <VoiceInput onSend={sendMessage} isPending={isStreaming} />
+      <VoiceInput onSend={sendMessage} isPending={isStreaming} isAiSpeaking={isAiSpeaking} />
     </div>
   );
 }

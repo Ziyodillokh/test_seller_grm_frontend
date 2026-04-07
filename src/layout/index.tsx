@@ -48,7 +48,7 @@ export default function Layout() {
 
   const onPointerUp = () => {
     if (!dragState.current.dragging) {
-      navigate("/chatGPT");
+      navigate("/voiceChat");
     }
     dragState.current.dragging = false;
   };
@@ -74,7 +74,7 @@ export default function Layout() {
     }
   }, [token, meUser, pathname.pathname]);
 
-  const hiddenRoutes = ["/chatGPT", "/voiceChat"];
+  const hiddenRoutes = ["/voiceChat"];
   const showFloat = !hiddenRoutes.includes(location?.pathname);
   const hideHeader = hiddenRoutes.includes(location?.pathname);
 

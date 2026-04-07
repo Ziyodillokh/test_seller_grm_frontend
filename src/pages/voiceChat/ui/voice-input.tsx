@@ -6,18 +6,29 @@ import {
   type KeyboardEvent,
 } from "react";
 import { Send, Mic } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import Waveform from "./waveform";
 
 interface VoiceInputProps {
   onSend: (text: string) => void;
   isPending: boolean;
+  isAiSpeaking?: boolean;
 }
 
-export default function VoiceInput({ onSend, isPending }: VoiceInputProps) {
+function cleanToUzbekLatin(raw: string): string {
+  return raw.replace(/[^a-zA-Z0-9\s.,!?;:'"'\u02BB\u02BC\-()]/g, "");
+}
+
+export default function VoiceInput({
+  onSend,
+  isPending,
+  isAiSpeaking = false,
+}: VoiceInputProps) {
   const [value, setValue] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [liveStream, setLiveStream] = useState<MediaStream | null>(null);
   const [transcribing, setTranscribing] = useState(false);
+  const [inputFocused, setInputFocused] = useState(false);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
@@ -92,15 +103,17 @@ export default function VoiceInput({ onSend, isPending }: VoiceInputProps) {
           if (!res.ok) throw new Error("Transcribe failed");
           const { text } = await res.json();
           if (text?.trim()) {
-            setValue(text.trim());
-            // Auto-resize textarea
-            setTimeout(() => {
-              if (textareaRef.current) {
-                textareaRef.current.style.height = "auto";
-                textareaRef.current.style.height =
-                  Math.min(textareaRef.current.scrollHeight, 128) + "px";
-              }
-            }, 0);
+            const cleaned = cleanToUzbekLatin(text.trim());
+            if (cleaned) {
+              setValue(cleaned);
+              setTimeout(() => {
+                if (textareaRef.current) {
+                  textareaRef.current.style.height = "auto";
+                  textareaRef.current.style.height =
+                    Math.min(textareaRef.current.scrollHeight, 128) + "px";
+                }
+              }, 0);
+            }
           }
         } catch {
           // silent
@@ -167,6 +180,8 @@ export default function VoiceInput({ onSend, isPending }: VoiceInputProps) {
                 Math.min(e.target.scrollHeight, 128) + "px";
             }}
             onKeyDown={handleKeyDown}
+            onFocus={() => setInputFocused(true)}
+            onBlur={() => setInputFocused(false)}
             disabled={isPending || isRecording || transcribing}
             style={{ height: "44px", minHeight: "44px" }}
           />
@@ -183,50 +198,70 @@ export default function VoiceInput({ onSend, isPending }: VoiceInputProps) {
         </div>
       </div>
 
-      {/* Voice recording panel */}
-      <div className="bg-[#F5F5F5] rounded-t-[28px] px-4 pt-6 pb-8 flex flex-col items-center gap-5">
-        {/* Transcribing indicator */}
-        {transcribing && (
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded-full border-2 border-[#BDBDBD] border-t-[#555] animate-spin" />
-            <span className="text-[13px] text-[#888]">Aniqlayapman...</span>
-          </div>
+      {/* Voice recording panel — hidden when input focused (keyboard visible) */}
+      <AnimatePresence>
+        {!inputFocused && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="bg-[#F5F5F5] rounded-t-[28px] px-4 pt-6 pb-8 flex flex-col items-center gap-5">
+              {/* Transcribing indicator */}
+              {transcribing && (
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#BDBDBD] border-t-[#555] animate-spin" />
+                  <span className="text-[13px] text-[#888]">
+                    Aniqlayapman...
+                  </span>
+                </div>
+              )}
+
+              {/* Waveform pills */}
+              <Waveform
+                isRecording={isRecording}
+                stream={liveStream}
+                isAiSpeaking={isAiSpeaking}
+              />
+
+              {/* Mic button */}
+              <button
+                onMouseDown={handlePointerDown}
+                onMouseUp={handlePointerUp}
+                onMouseLeave={handlePointerUp}
+                onTouchStart={handlePointerDown}
+                onTouchEnd={handlePointerUp}
+                onTouchCancel={handlePointerUp}
+                disabled={isPending || transcribing}
+                className={`w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all active:scale-95 disabled:opacity-40 ${
+                  isRecording
+                    ? "bg-white shadow-[0_4px_24px_rgba(239,68,68,0.25)]"
+                    : "bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+                }`}
+              >
+                <Mic
+                  size={26}
+                  className={
+                    isRecording ? "text-[#ef4444]" : "text-[#1A1A1A]"
+                  }
+                  strokeWidth={1.8}
+                />
+              </button>
+
+              {/* Label */}
+              <p className="text-[12px] text-[#BDBDBD]">
+                {isRecording
+                  ? "Qo'yib yuboring..."
+                  : transcribing
+                    ? ""
+                    : "Bosib turing va gapiring"}
+              </p>
+            </div>
+          </motion.div>
         )}
-
-        {/* Waveform pills */}
-        <Waveform isRecording={isRecording} stream={liveStream} />
-
-        {/* Mic button */}
-        <button
-          onMouseDown={handlePointerDown}
-          onMouseUp={handlePointerUp}
-          onMouseLeave={handlePointerUp}
-          onTouchStart={handlePointerDown}
-          onTouchEnd={handlePointerUp}
-          onTouchCancel={handlePointerUp}
-          disabled={isPending || transcribing}
-          className={`w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all active:scale-95 disabled:opacity-40 ${
-            isRecording
-              ? "bg-white shadow-[0_4px_24px_rgba(239,68,68,0.25)]"
-              : "bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
-          }`}
-        >
-          <Mic
-            size={26}
-            className={isRecording ? "text-[#ef4444]" : "text-[#1A1A1A]"}
-            strokeWidth={1.8}
-          />
-        </button>
-
-        {/* Label */}
-        <p className="text-[12px] text-[#BDBDBD]">
-          {isRecording
-            ? "Qo'yib yuboring..."
-            : transcribing
-              ? ""
-              : "Bosib turing va gapiring"}
-        </p>
-      </div>
+      </AnimatePresence>
     </div>
   );
 }
