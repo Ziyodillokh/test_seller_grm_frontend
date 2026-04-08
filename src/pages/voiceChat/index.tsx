@@ -387,7 +387,7 @@ export default function VoiceChat() {
                 Ovozli yordamchi
               </p>
               <p className="text-[13px] text-[#ACACAC] leading-relaxed">
-                Mikrofon tugmasini bosib turing va savolingizni
+                Mikrofon tugmasini bosing va savolingizni
                 <br />
                 o'zbek tilida aytib bering.
               </p>

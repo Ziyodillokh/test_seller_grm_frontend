@@ -5,7 +5,7 @@ import {
   useEffect,
   type KeyboardEvent,
 } from "react";
-import { Send, Mic } from "lucide-react";
+import { Send, Mic, Square } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Waveform from "./waveform";
 
@@ -18,6 +18,12 @@ interface VoiceInputProps {
 function cleanToUzbekLatin(raw: string): string {
   return raw.replace(/[^a-zA-Z0-9\s.,!?;:'"'\u02BB\u02BC\-()]/g, "");
 }
+
+/* ---- Silence detection config ---- */
+const SILENCE_THRESHOLD = 0.012; // RMS below this = silence
+const SILENCE_DURATION_MS = 2000; // 2s of silence → auto-stop
+const SILENCE_CHECK_DELAY_MS = 1500; // wait 1.5s before checking (let user start)
+const MAX_RECORDING_MS = 60000; // safety: 60s max
 
 export default function VoiceInput({
   onSend,
@@ -34,19 +40,34 @@ export default function VoiceInput({
   const chunksRef = useRef<Blob[]>([]);
   const streamRef = useRef<MediaStream | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const didStartRef = useRef(false);
+
+  /* silence detection refs */
+  const silenceAudioCtxRef = useRef<AudioContext | null>(null);
+  const silenceAnalyserRef = useRef<AnalyserNode | null>(null);
+  const silenceRafRef = useRef<number>(0);
+  const silenceStartRef = useRef<number | null>(null);
+  const silenceDelayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  const safetyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isStoppingRef = useRef(false);
 
   const baseUrl = (import.meta.env.VITE_BASE_URL as string).replace(/\/$/, "");
 
+  /* ---- Cleanup on unmount ---- */
   useEffect(() => {
     return () => {
       mediaRecorderRef.current?.stop();
       streamRef.current?.getTracks().forEach((t) => t.stop());
-      if (longPressTimer.current) clearTimeout(longPressTimer.current);
+      cancelAnimationFrame(silenceRafRef.current);
+      if (silenceDelayTimerRef.current)
+        clearTimeout(silenceDelayTimerRef.current);
+      if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
+      silenceAudioCtxRef.current?.close().catch(() => {});
     };
   }, []);
 
+  /* ---- Text send (for keyboard typing fallback) ---- */
   const handleSend = useCallback(() => {
     const trimmed = value.trim();
     if (!trimmed || isPending) return;
@@ -64,12 +85,71 @@ export default function VoiceInput({
     }
   };
 
-  // --- Press-and-hold recording ---
+  /* ---- Stop recording ---- */
+  const stopRecording = useCallback(() => {
+    if (isStoppingRef.current) return;
+    isStoppingRef.current = true;
+
+    cancelAnimationFrame(silenceRafRef.current);
+    if (silenceDelayTimerRef.current)
+      clearTimeout(silenceDelayTimerRef.current);
+    if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
+
+    if (silenceAudioCtxRef.current) {
+      silenceAudioCtxRef.current.close().catch(() => {});
+      silenceAudioCtxRef.current = null;
+      silenceAnalyserRef.current = null;
+    }
+
+    if (mediaRecorderRef.current?.state === "recording") {
+      mediaRecorderRef.current.stop();
+    }
+  }, []);
+
+  /* ---- Silence detection loop ---- */
+  const checkSilence = useCallback(() => {
+    const analyser = silenceAnalyserRef.current;
+    if (!analyser || isStoppingRef.current) return;
+
+    const buf = new Float32Array(analyser.fftSize);
+    analyser.getFloatTimeDomainData(buf);
+
+    let sum = 0;
+    for (let i = 0; i < buf.length; i++) sum += buf[i] * buf[i];
+    const rms = Math.sqrt(sum / buf.length);
+
+    if (rms < SILENCE_THRESHOLD) {
+      if (silenceStartRef.current === null) {
+        silenceStartRef.current = Date.now();
+      } else if (Date.now() - silenceStartRef.current >= SILENCE_DURATION_MS) {
+        stopRecording();
+        return;
+      }
+    } else {
+      silenceStartRef.current = null;
+    }
+
+    silenceRafRef.current = requestAnimationFrame(checkSilence);
+  }, [stopRecording]);
+
+  /* ---- Start recording ---- */
   const startRecording = useCallback(async () => {
     try {
+      isStoppingRef.current = false;
+      silenceStartRef.current = null;
+
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       streamRef.current = stream;
       setLiveStream(stream);
+
+      /* silence detection analyser */
+      const ctx = new AudioContext();
+      silenceAudioCtxRef.current = ctx;
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 2048;
+      analyser.smoothingTimeConstant = 0.8;
+      silenceAnalyserRef.current = analyser;
+      ctx.createMediaStreamSource(stream).connect(analyser);
 
       const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
         ? "audio/webm;codecs=opus"
@@ -89,7 +169,10 @@ export default function VoiceInput({
         setIsRecording(false);
 
         const blob = new Blob(chunksRef.current, { type: mimeType });
-        if (blob.size < 800) return; // too short
+        if (blob.size < 800) {
+          isStoppingRef.current = false;
+          return;
+        }
 
         setTranscribing(true);
         try {
@@ -105,66 +188,56 @@ export default function VoiceInput({
           if (text?.trim()) {
             const cleaned = cleanToUzbekLatin(text.trim());
             if (cleaned) {
-              setValue(cleaned);
-              setTimeout(() => {
-                if (textareaRef.current) {
-                  textareaRef.current.style.height = "auto";
-                  textareaRef.current.style.height =
-                    Math.min(textareaRef.current.scrollHeight, 128) + "px";
-                }
-              }, 0);
+              /* AUTO-SEND: skip textarea, send directly to AI */
+              onSend(cleaned);
             }
           }
         } catch {
-          // silent
+          /* silent */
         } finally {
           setTranscribing(false);
+          isStoppingRef.current = false;
         }
       };
 
       recorder.start();
       setIsRecording(true);
-      didStartRef.current = true;
 
-      // Auto-stop after 30s safety
-      longPressTimer.current = setTimeout(() => {
-        if (mediaRecorderRef.current?.state === "recording") {
-          mediaRecorderRef.current.stop();
+      /* start silence detection after delay (let user begin speaking) */
+      silenceDelayTimerRef.current = setTimeout(() => {
+        if (!isStoppingRef.current) {
+          silenceRafRef.current = requestAnimationFrame(checkSilence);
         }
-      }, 30000);
+      }, SILENCE_CHECK_DELAY_MS);
+
+      /* safety auto-stop */
+      safetyTimerRef.current = setTimeout(() => {
+        if (mediaRecorderRef.current?.state === "recording") {
+          stopRecording();
+        }
+      }, MAX_RECORDING_MS);
     } catch {
       setIsRecording(false);
       setLiveStream(null);
+      isStoppingRef.current = false;
     }
-  }, [baseUrl]);
+  }, [baseUrl, onSend, checkSilence, stopRecording]);
 
-  const stopRecording = useCallback(() => {
-    if (longPressTimer.current) clearTimeout(longPressTimer.current);
-    if (mediaRecorderRef.current?.state === "recording") {
-      mediaRecorderRef.current.stop();
-    }
-    didStartRef.current = false;
-  }, []);
-
-  // Touch / mouse handlers for press-and-hold
-  const handlePointerDown = useCallback(() => {
+  /* ---- Toggle mic (tap to start / tap to stop) ---- */
+  const handleMicToggle = useCallback(() => {
     if (isPending || transcribing) return;
-    didStartRef.current = false;
-    longPressTimer.current = setTimeout(() => {
-      // Not a tap — its a long press, but we start right away
-    }, 0);
-    startRecording();
-  }, [isPending, transcribing, startRecording]);
-
-  const handlePointerUp = useCallback(() => {
-    if (isRecording) stopRecording();
-  }, [isRecording, stopRecording]);
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  }, [isPending, transcribing, isRecording, stopRecording, startRecording]);
 
   const hasText = value.trim().length > 0;
 
   return (
     <div className="flex-shrink-0">
-      {/* Text input row */}
+      {/* Text input row (typing fallback) */}
       <div className="px-4 pb-2 pt-3 bg-white border-t border-[#EBEBEB]">
         <div className="flex items-end gap-2.5">
           <textarea
@@ -198,7 +271,7 @@ export default function VoiceInput({
         </div>
       </div>
 
-      {/* Voice recording panel — hidden when input focused (keyboard visible) */}
+      {/* Voice recording panel — hidden when keyboard visible */}
       <AnimatePresence>
         {!inputFocused && (
           <motion.div
@@ -209,12 +282,20 @@ export default function VoiceInput({
             className="overflow-hidden"
           >
             <div className="bg-[#F5F5F5] rounded-t-[28px] px-4 pt-6 pb-8 flex flex-col items-center gap-5">
-              {/* Transcribing indicator */}
+              {/* Status indicator */}
               {transcribing && (
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 rounded-full border-2 border-[#BDBDBD] border-t-[#555] animate-spin" />
                   <span className="text-[13px] text-[#888]">
                     Aniqlayapman...
+                  </span>
+                </div>
+              )}
+              {isRecording && !transcribing && (
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                  <span className="text-[13px] text-[#666]">
+                    Tinglayapman...
                   </span>
                 </div>
               )}
@@ -226,37 +307,39 @@ export default function VoiceInput({
                 isAiSpeaking={isAiSpeaking}
               />
 
-              {/* Mic button */}
+              {/* Mic toggle button */}
               <button
-                onMouseDown={handlePointerDown}
-                onMouseUp={handlePointerUp}
-                onMouseLeave={handlePointerUp}
-                onTouchStart={handlePointerDown}
-                onTouchEnd={handlePointerUp}
-                onTouchCancel={handlePointerUp}
+                onClick={handleMicToggle}
                 disabled={isPending || transcribing}
                 className={`w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all active:scale-95 disabled:opacity-40 ${
                   isRecording
-                    ? "bg-white shadow-[0_4px_24px_rgba(239,68,68,0.25)]"
+                    ? "bg-red-500 shadow-[0_4px_24px_rgba(239,68,68,0.35)]"
                     : "bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
                 }`}
               >
-                <Mic
-                  size={26}
-                  className={
-                    isRecording ? "text-[#ef4444]" : "text-[#1A1A1A]"
-                  }
-                  strokeWidth={1.8}
-                />
+                {isRecording ? (
+                  <Square
+                    size={22}
+                    className="text-white"
+                    fill="white"
+                    strokeWidth={0}
+                  />
+                ) : (
+                  <Mic
+                    size={26}
+                    className="text-[#1A1A1A]"
+                    strokeWidth={1.8}
+                  />
+                )}
               </button>
 
               {/* Label */}
               <p className="text-[12px] text-[#BDBDBD]">
                 {isRecording
-                  ? "Qo'yib yuboring..."
+                  ? "Gapiring, jimlik aniqlansa avtomatik to'xtaydi"
                   : transcribing
                     ? ""
-                    : "Bosib turing va gapiring"}
+                    : "Bosing va gapiring"}
               </p>
             </div>
           </motion.div>
