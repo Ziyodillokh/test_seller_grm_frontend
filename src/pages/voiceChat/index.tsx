@@ -50,17 +50,14 @@ export default function VoiceChat() {
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
   const sentenceIdxRef = useRef(0);
   const nextPlayIdxRef = useRef(0);
-  const audioQueueRef = useRef<
-    Map<number, HTMLAudioElement | null | "error">
-  >(new Map());
+  const audioQueueRef = useRef<Map<number, HTMLAudioElement | null | "error">>(
+    new Map()
+  );
   const isPlayingRef = useRef(false);
   const pendingTextRef = useRef("");
   const ttsActiveRef = useRef(false);
 
-  const baseUrl = (import.meta.env.VITE_BASE_URL as string).replace(
-    /\/$/,
-    "",
-  );
+  const baseUrl = (import.meta.env.VITE_BASE_URL as string).replace(/\/$/, "");
 
   /* ---- Load history ---- */
   const { data: chatHistory, isLoading: historyLoading } =
@@ -69,7 +66,7 @@ export default function VoiceChat() {
       queryFn: () =>
         getAllData<IChatHistory, { page: number; limit: number }>(
           apiRoutes.chatgpt,
-          { page: 1, limit: 20 },
+          { page: 1, limit: 20 }
         ),
     });
 
@@ -181,7 +178,7 @@ export default function VoiceChat() {
         tryPlayNext();
       }
     },
-    [baseUrl, tryPlayNext],
+    [baseUrl, tryPlayNext]
   );
 
   const flushSentences = useCallback(
@@ -199,7 +196,7 @@ export default function VoiceChat() {
       }
       return remainder;
     },
-    [fetchTTSSentence],
+    [fetchTTSSentence]
   );
 
   /* ---- Send message & stream response ---- */
@@ -224,15 +221,12 @@ export default function VoiceChat() {
       setIsStreaming(true);
 
       try {
-        const response = await fetch(
-          `${baseUrl}${apiRoutes.chatgpt}/stream`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({ prompt }),
-          },
-        );
+        const response = await fetch(`${baseUrl}${apiRoutes.chatgpt}/stream`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ prompt }),
+        });
 
         if (!response.ok || !response.body) throw new Error("Stream error");
 
@@ -282,7 +276,7 @@ export default function VoiceChat() {
                 pendingTextRef.current += data.text;
                 pendingTextRef.current = flushSentences(
                   pendingTextRef.current,
-                  false,
+                  false
                 );
               }
 
@@ -327,7 +321,7 @@ export default function VoiceChat() {
         setIsStreaming(false);
       }
     },
-    [isStreaming, baseUrl, flushSentences, resetTTSQueue, queryClient],
+    [isStreaming, baseUrl, flushSentences, resetTTSQueue, queryClient]
   );
 
   /* ---- Cleanup ---- */
@@ -410,7 +404,11 @@ export default function VoiceChat() {
       </div>
 
       {/* ===== Input + Voice Panel ===== */}
-      <VoiceInput onSend={sendMessage} isPending={isStreaming} isAiSpeaking={isAiSpeaking} />
+      <VoiceInput
+        onSend={sendMessage}
+        isPending={isStreaming}
+        isAiSpeaking={isAiSpeaking}
+      />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import {
   useEffect,
   type KeyboardEvent,
 } from "react";
-import { Send, Mic, Square } from "lucide-react";
+import { Send, Mic } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Waveform from "./waveform";
 
@@ -47,7 +47,7 @@ export default function VoiceInput({
   const silenceRafRef = useRef<number>(0);
   const silenceStartRef = useRef<number | null>(null);
   const silenceDelayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
+    null
   );
   const safetyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isStoppingRef = useRef(false);
@@ -223,15 +223,15 @@ export default function VoiceInput({
     }
   }, [baseUrl, onSend, checkSilence, stopRecording]);
 
-  /* ---- Toggle mic (tap to start / tap to stop) ---- */
-  const handleMicToggle = useCallback(() => {
+  /* ---- Press-and-hold: pointer down starts, pointer up stops ---- */
+  const handlePointerDown = useCallback(() => {
     if (isPending || transcribing) return;
-    if (isRecording) {
-      stopRecording();
-    } else {
-      startRecording();
-    }
-  }, [isPending, transcribing, isRecording, stopRecording, startRecording]);
+    startRecording();
+  }, [isPending, transcribing, startRecording]);
+
+  const handlePointerUp = useCallback(() => {
+    if (isRecording) stopRecording();
+  }, [isRecording, stopRecording]);
 
   const hasText = value.trim().length > 0;
 
@@ -307,39 +307,35 @@ export default function VoiceInput({
                 isAiSpeaking={isAiSpeaking}
               />
 
-              {/* Mic toggle button */}
+              {/* Mic press-and-hold button */}
               <button
-                onClick={handleMicToggle}
+                onMouseDown={handlePointerDown}
+                onMouseUp={handlePointerUp}
+                onMouseLeave={handlePointerUp}
+                onTouchStart={handlePointerDown}
+                onTouchEnd={handlePointerUp}
+                onTouchCancel={handlePointerUp}
                 disabled={isPending || transcribing}
                 className={`w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all active:scale-95 disabled:opacity-40 ${
                   isRecording
-                    ? "bg-red-500 shadow-[0_4px_24px_rgba(239,68,68,0.35)]"
+                    ? "bg-white shadow-[0_4px_24px_rgba(239,68,68,0.25)]"
                     : "bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
                 }`}
               >
-                {isRecording ? (
-                  <Square
-                    size={22}
-                    className="text-white"
-                    fill="white"
-                    strokeWidth={0}
-                  />
-                ) : (
-                  <Mic
-                    size={26}
-                    className="text-[#1A1A1A]"
-                    strokeWidth={1.8}
-                  />
-                )}
+                <Mic
+                  size={26}
+                  className={isRecording ? "text-[#ef4444]" : "text-[#1A1A1A]"}
+                  strokeWidth={1.8}
+                />
               </button>
 
               {/* Label */}
               <p className="text-[12px] text-[#BDBDBD]">
                 {isRecording
-                  ? "Gapiring, jimlik aniqlansa avtomatik to'xtaydi"
+                  ? "Qo'yib yuboring..."
                   : transcribing
                     ? ""
-                    : "Bosing va gapiring"}
+                    : "Bosib turing va gapiring"}
               </p>
             </div>
           </motion.div>
