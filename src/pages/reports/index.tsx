@@ -92,14 +92,6 @@ export default function ReportPage() {
         </div>
       </div>
 
-      {/* Terminal */}
-      <div className="bg-background border border-border rounded-[12px] p-3 mb-3">
-        <p className="text-[11px] text-muted-foreground">Terminal</p>
-        <p className="text-[16px] font-bold text-[#0075FF]">
-          {formatPrice(totals?.plastic || 0)}$
-        </p>
-      </div>
-
       {/* Planka progress */}
       {(plan?.planPrice ?? 0) > 0 && (
         <div className="bg-background border border-border rounded-[12px] p-3 mb-3">
