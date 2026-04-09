@@ -1,33 +1,19 @@
 
-import { DefinedInitialDataInfiniteOptions, useInfiniteQuery } from "@tanstack/react-query";
-
+import { useQuery } from "@tanstack/react-query";
 import { getAllData } from "@/service/apiHelpers";
-import { apiRoutes } from "@/service/apiRoutes";
-import { TResponse } from "@/types";
+import type { SellerDailyReport } from "./type";
 
-import { ReportsSummary, TData, TQuery } from "./type";
-
-interface ITransfers {
-  options?: DefinedInitialDataInfiniteOptions<TResponse<TData> & ReportsSummary>;
-  queries?: TQuery;
-}
-
-const useOrderByUser = ({ options, queries }: ITransfers) =>
-  useInfiniteQuery({
-    ...options,
-    queryKey: [apiRoutes.cashFlows, queries],
-    queryFn: ({ pageParam = 1 }) =>
-      getAllData<TResponse<TData> & ReportsSummary, TQuery>(apiRoutes.cashFlows,
-        { ...queries, page: pageParam as number, limit: 10 }
+export const useSellerDailyReport = (
+  sellerId: string | undefined,
+  year: number,
+  month: number
+) =>
+  useQuery({
+    queryKey: ["/filial-plan/seller-daily", sellerId, year, month],
+    queryFn: () =>
+      getAllData<SellerDailyReport, { year: number; month: number }>(
+        `/filial-plan/seller-daily/${sellerId}`,
+        { year, month }
       ),
-    getNextPageParam: (lastPage) => {
-      if (lastPage.meta.currentPage <= lastPage.meta.totalPages) {
-        return lastPage?.meta?.currentPage + 1;
-      } else {
-        return null;
-      }
-    },
-    initialPageParam: 1
+    enabled: !!sellerId,
   });
-
-export default useOrderByUser;
