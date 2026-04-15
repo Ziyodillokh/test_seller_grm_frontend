@@ -55,9 +55,9 @@ export default function TransferContent(props: IContentProps) {
                   ?.priceMeter || 0
               }
               isBron={Boolean(
-                item?.booking_count === item?.book_count && item?.booking_count
+                item?.booking_count && item?.booking_count >= item?.count
               )}
-              book_count={item?.book_count}
+              book_count={item?.booking_count}
               colaction={item?.bar_code?.collection?.title}
               color={item?.bar_code?.color?.title}
               isTransfer={true}

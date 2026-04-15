@@ -83,9 +83,9 @@ export default function Content(props: IContentProps) {
                   ?.priceMeter || 0
               }
               isBron={Boolean(
-                item?.booking_count === item?.book_count && item?.booking_count
+                item?.booking_count && item?.booking_count >= item?.count
               )}
-              book_count={item?.book_count}
+              book_count={item?.booking_count}
               // isTransfer={meUser?.position.role == 2 ? false:true}
               isTransfer={meUser?.position.role == 2 ? isTransfer : true}
               colaction={item?.bar_code?.collection?.title}
