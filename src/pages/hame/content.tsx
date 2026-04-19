@@ -1,7 +1,7 @@
 // import CarpetCard from "@/components/cards/carpet-card";
 import {  useQueryState } from "nuqs";
 import { useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import CarpetCard from "@/components/cards/carpet-card";
 import SearchInput from "@/components/search-input";
@@ -28,7 +28,6 @@ export default function Content(props: IContentProps) {
   const isTransfer = location?.pathname  == "/home/transfer" ;
   const [, setTab] = useQueryState("tab");
   const [id] = useQueryState("id");
-  const [, setSearchParams] = useSearchParams();
   const { meUser } = useMeStore();
 
   const handleTabFile = (item: { value: string; label: string }) => {
@@ -38,8 +37,8 @@ export default function Content(props: IContentProps) {
   };
 
   useEffect(() => {
-    if (!search) setSearchParams({});
-  }, [search]);
+    if (!search && !id) setTab(null);
+  }, [search, id]);
 
   return (
     <>
