@@ -35,7 +35,7 @@ export default function Content() {
     enabled: !!meUser?.filial?.id,
   });
   const latestReport = filialReportsResp?.items?.[0];
-  const hasOpenPereuchot = latestReport?.status === "open";
+  const hasOpenPereuchot = (latestReport?.status || "").toLowerCase() === "open";
 
   const filialReport = hasOpenPereuchot
     ? [
