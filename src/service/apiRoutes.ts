@@ -61,6 +61,7 @@ export const apiRoutes = {
   modelsOrderReport: "/model/order/models-report",
   sizeOrderReport: "/size/order/reports",
   reInventoryGetByFilialReport: '/re-inventory/get-by/filial-report',
+  filialReport: '/filial-report',
   filialPlan: '/filial-plan',
   chatgpt: '/chatgpt',
 } as const;

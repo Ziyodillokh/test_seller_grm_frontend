@@ -27,7 +27,17 @@ export default function Content() {
     (new Date().getMonth() + 1).toString()
   );
   const [years] = useState<string>(new Date().getFullYear().toString());
-  const filialReport = meUser?.filial?.need_get_report
+
+  // Seller app'da "Переучёт" menu faqat filial_report.status === 'open' bo'lganda ko'rinadi
+  const { data: filialReportsResp } = useQuery({
+    queryKey: [apiRoutes.filialReport, meUser?.filial?.id],
+    queryFn: () => getAllData<{ items: any[] }, any>(apiRoutes.filialReport, { filialId: meUser?.filial?.id, limit: 1 }),
+    enabled: !!meUser?.filial?.id,
+  });
+  const latestReport = filialReportsResp?.items?.[0];
+  const hasOpenPereuchot = latestReport?.status === "open";
+
+  const filialReport = hasOpenPereuchot
     ? [
         {
           id: 4,
