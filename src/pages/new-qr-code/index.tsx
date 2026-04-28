@@ -63,7 +63,7 @@ export default function ProductCheckPage() {
     if (brcode && qrBaseOne) {
       form.reset({
         code: qrBaseOne?.code || "",
-        // isMetric:qrBaseOne?.isMetric ? "Метражный":"Штучный",
+        // isMetric:qrBaseOne?.isMetric ? "Metrli":"Donabay",
         // id: qrBaseOne?.id || "",
         country: {
           value: qrBaseOne?.country?.id as string | undefined,

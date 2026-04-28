@@ -92,10 +92,10 @@ export default function BronsModals() {
   return (
     <Dialog onOpenChange={() => setCarpetType(null)} open={Boolean(carpetType)}>
       <DialogContent className="max-w-[300px]">
-        {carpetType === "Метражный" && (
+        {carpetType === "Metrli" && (
           <MetrComponet value={value} setValue={setValue} />
         )}
-        {carpetType === "Штучный" && (
+        {carpetType === "Donabay" && (
           <RuloComponet value={value || 1} setValue={setValue} />
         )}
         {carpetType === "broned" && <BronedComponet />}
@@ -106,7 +106,7 @@ export default function BronsModals() {
                 mutate({
                   product: Id,
                   x: value,
-                  isMetric: carpetType == "Метражный" ? true : false,
+                  isMetric: carpetType == "Metrli" ? true : false,
                 });
               }
             }}

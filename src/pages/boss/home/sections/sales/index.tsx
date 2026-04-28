@@ -55,7 +55,7 @@ const colms2 = (item: CashFlowsData) => [
     ],
   },
   {
-    label: item?.order?.bar_code?.isMetric ? "Метражный" : "Штучный",
+    label: item?.order?.bar_code?.isMetric ? "Metrli" : "Donabay",
     values: [
       item?.order?.bar_code?.shape?.title,
       item?.order?.bar_code?.style?.title,

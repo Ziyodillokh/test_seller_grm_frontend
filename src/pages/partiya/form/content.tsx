@@ -111,9 +111,9 @@ export default function FormContent() {
           type="number"
            classNameInput="h-[56px] border-border border  rounded-[0px] bg-background p-2"
           name="count"
-          placeholder={isMetric == "Метражный" ? "Длина" : "count"}
+          placeholder={isMetric == "Metrli" ? "Длина" : "count"}
           disabled={!editble}
-          // label={isMetric == "Метражный" ? "Длина" : "count"}
+          // label={isMetric == "Metrli" ? "Длина" : "count"}
         />
         <Button
           className="col-span-2 h-[56px] rounded-t-[0px]"

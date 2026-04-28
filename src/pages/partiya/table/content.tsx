@@ -39,7 +39,7 @@ export default function Content(props: IContentProps) {
           data?.map((item) => (
             <CarpetCard
               id={item?.id}
-              carpetType={item?.bar_code?.isMetric ? "Метражный" : "Штучный"}
+              carpetType={item?.bar_code?.isMetric ? "Metrli" : "Donabay"}
               discount={""}
               key={item?.id}
               img={ undefined}

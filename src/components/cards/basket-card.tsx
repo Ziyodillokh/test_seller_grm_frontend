@@ -94,7 +94,7 @@ export default function BasketCard({
           <div className="flex items-center text-primary/60 text-[12px]">
             <p className="pr-1 border-r border-border">{color}</p>
             <p className="pr-1 ml-1 border-r border-border">{size}</p>
-            {type !== "Штучный" && (
+            {type !== "Donabay" && (
               <p className="pr-1 ml-1 border-r border-border">{max?.toFixed(2)||0}</p>
             )}
 
@@ -102,7 +102,7 @@ export default function BasketCard({
           </div>
         </div>
 
-        {type == "Штучный" && (
+        {type == "Donabay" && (
           <CounBasketInput
             handleCount={handleCount}
             x={x}
@@ -118,7 +118,7 @@ export default function BasketCard({
             max={max}
           />
         )}
-        {type == "Метражный" && (
+        {type == "Metrli" && (
           <div className="px-3 w-full max-w-[110px] py-[10px] flex justify-center items-center gap-1 bg-background rounded-[12px]">
             {/*{max && <p className="text-primary text-[15px] font-medium">{max}</p>}*/}
             <MoveHorizontal

@@ -128,7 +128,7 @@ const ActionPage = () => {
         code: qrBaseOne?.code || "",
         isMetric: {
           value: qrBaseOne?.isMetric ? "true" : "false",
-          label: qrBaseOne?.isMetric ? "Метражный" : "Штучный",
+          label: qrBaseOne?.isMetric ? "Metrli" : "Donabay",
         },
         value:  qrBaseOne?.isMetric?   0:1,
         country: {

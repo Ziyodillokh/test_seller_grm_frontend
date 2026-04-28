@@ -15,7 +15,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
           <CarpetCard
             id={item?.id}
             carpetType={
-              item?.product?.bar_code?.isMetric ? "Метражный" : "Штучный"
+              item?.product?.bar_code?.isMetric ? "Metrli" : "Donabay"
             }
             discount={""}
             img={item?.product?.bar_code?.imgUrl?.path || undefined}

@@ -63,7 +63,7 @@ export default function BossProducts() {
           isBron={false}
           isBacket={true}
           img={item?.bar_code?.imgUrl?.path || undefined}
-          carpetType={item?.bar_code?.isMetric ? "Метражный" : "Штучный"}
+          carpetType={item?.bar_code?.isMetric ? "Metrli" : "Donabay"}
           discount={""}
           model={item?.bar_code?.model?.title}
           size={item?.bar_code?.size?.title}

@@ -195,8 +195,8 @@ const CarpetCard: React.FC<ICarpetCard> = ({
                 if (!isPending) {
                   mutate({
                     product: id,
-                    x: carpetType == "Метражный" ? count : 1,
-                    isMetric: carpetType == "Метражный" ? true : false,
+                    x: carpetType == "Metrli" ? count : 1,
+                    isMetric: carpetType == "Metrli" ? true : false,
                     is_transfer: isTransfer || false,
                   });
                 }

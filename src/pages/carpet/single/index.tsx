@@ -156,7 +156,7 @@ export default function CarpetSinglePage() {
             Тип-ковра:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
-            {data?.bar_code?.isMetric ? "Метражный" : "Штучный"}
+            {data?.bar_code?.isMetric ? "Metrli" : "Donabay"}
           </p>
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
@@ -242,7 +242,7 @@ export default function CarpetSinglePage() {
                 x: data?.bar_code?.isMetric ? data?.y * 100 : 1,
                 isMetric: data?.bar_code?.isMetric || false,
               });
-              // setCarpetType( data?.bar_code?.isMetric ?'Метражный': 'Штучный')
+              // setCarpetType( data?.bar_code?.isMetric ?'Metrli': 'Donabay')
               // setId(data?.id||"")
             }}
             className="h-[56px] flex items-center justify-center gap-1   w-full mt-2 mb-12"

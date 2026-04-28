@@ -41,7 +41,7 @@ export default function Content(props: IContentProps) {
             <CarpetCard
             key={item?.id}
               id={item?.id}
-              carpetType={item?.bar_code?.isMetric ? "Метражный" : "Штучный"}
+              carpetType={item?.bar_code?.isMetric ? "Metrli" : "Donabay"}
               discount={""}
               img={item?.bar_code?.imgUrl?.path || undefined}
               model={item?.bar_code?.model?.title}

@@ -120,7 +120,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
               max={
                 items?.isMetric ? items?.product.y * 100 : items?.product?.count
               }
-              type={items?.isMetric ? "Метражный" : "Штучный"}
+              type={items?.isMetric ? "Metrli" : "Donabay"}
               handleCount={(value: number) =>
                 incrementMutation.mutate({ id: items?.id, x: value })
               }

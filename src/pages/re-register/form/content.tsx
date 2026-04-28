@@ -95,8 +95,8 @@ export default function FormContent({isPending}:{isPending:boolean}) {
         <FormComboboxDemoInput
           fieldNames={{ value: "id", label: "title" }}
           option={[
-            { value: "true", label: "Метражный" },
-            { value: "false", label: "Штучный" },
+            { value: "true", label: "Metrli" },
+            { value: "false", label: "Donabay" },
           ]}
           name="isMetric"
            classNameChild="p-2 h-[50px]"
@@ -123,7 +123,7 @@ export default function FormContent({isPending}:{isPending:boolean}) {
           type="number"
           classNameInput="h-[50px] p-2 rounded-none"
           name="value"
-          placeholder={isMetric == "Метражный" ? "Длина" : "count"}
+          placeholder={isMetric == "Metrli" ? "Длина" : "count"}
           
           // disabled={tip !== "переучет" || reportStatus == "closed"}
         />

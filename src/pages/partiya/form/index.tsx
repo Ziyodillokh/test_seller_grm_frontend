@@ -141,7 +141,7 @@ const ActionPage = () => {
     if (qrBaseOne) {
       form.reset({
         code: qrBaseOne?.code || "",
-        isMetric: qrBaseOne?.isMetric ? "Метражный" : "Штучный",
+        isMetric: qrBaseOne?.isMetric ? "Metrli" : "Donabay",
         count: qrBaseOne?.count || qrBaseOne?.isMetric ? (qrBaseOne?.size?.y|| 0 ) * 100  : 1,
         country: {
           value: qrBaseOne?.country?.id,
