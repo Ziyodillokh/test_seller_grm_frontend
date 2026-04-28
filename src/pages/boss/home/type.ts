@@ -2,7 +2,7 @@ enum OrderEnum {
   Progress = "progress",
   Accept = "accepted",
   Reject = "rejected",
-  Cancel = "canceled",
+  Return = "returned",
 }
 export type CashFlowsData = {
   id: string;
