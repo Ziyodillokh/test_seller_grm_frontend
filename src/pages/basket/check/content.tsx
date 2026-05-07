@@ -22,12 +22,14 @@ interface IContent {
     comment,
     isDebt,
     clientId,
+    debtAmount,
   }: {
     price: number;
     plasticSum: number;
     comment: string;
     isDebt?: boolean;
     clientId?: string;
+    debtAmount?: number;
   }) => void;
 }
 
@@ -129,11 +131,18 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
                 }
                 type={"number"}
                 min={0}
-                disabled={Boolean(dutyValue)}
                 className="outline-none w-full no-spinner"
                 placeholder={"Онлайн"}
               />
             </div>
+            {Boolean(dutyValue) && (
+              <div className="p-4 flex rounded-[12px] mt-2.5 bg-[#fff5e6] shadow items-center justify-between">
+                <span className="text-[#EC6724] text-[14px] font-medium">Qarz</span>
+                <span className="text-[#EC6724] text-[16px] font-bold">
+                  ${Math.max(total - (sum.price + sum.plasticSum), 0).toFixed(2)}
+                </span>
+              </div>
+            )}
           </div>
           <div className="w-full flex items-center rounded-[12px] justify-center flex-col bg-background shadow text-center p-[21px]">
             <p className="text-primary text-[13px]">Скидка</p>
@@ -162,18 +171,28 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
       </div>
       <div className="w-full bg-background flex justify-center px-2.5 py-[21px] shadow-[0_-4px_6px_rgba(0,0,0,0.1)] fixed bottom-0 left-0 ">
         <Button
-          disabled={sum.price + sum.plasticSum === 0 || isPending}
+          disabled={
+            isPending ||
+            // Qarz holatda: clientId va qarz qoldiq > 0 majburiy
+            (Boolean(dutyValue) && Math.max(total - (sum.price + sum.plasticSum), 0) <= 0) ||
+            // Qarz emas holatda: cash + plastic > 0 va total ga mos
+            (!Boolean(dutyValue) && sum.price + sum.plasticSum < total) ||
+            (sum.price + sum.plasticSum === 0 && !Boolean(dutyValue))
+          }
           onClick={
             isPending
               ? () => {}
-              : () =>
-                {
-                    handleSubmit({
-                    isDebt: Boolean(dutyValue?.id),
+              : () => {
+                  const debtAmount = Boolean(dutyValue?.id)
+                    ? Math.max(total - (sum.price + sum.plasticSum), 0)
+                    : 0;
+                  handleSubmit({
+                    isDebt: debtAmount > 0,
                     clientId: dutyValue?.id,
+                    debtAmount,
                     comment: commit,
                     ...sum,
-                  })
+                  });
                 }
           }
           className="rounded-[12px] max-w-[500px]  h-12 text-center w-full"

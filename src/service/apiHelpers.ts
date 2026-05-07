@@ -95,8 +95,12 @@ export const incrementData = async (url: string, id: string, x:number) => {
 };
 
 export interface IOrderBasked {
-  price: number,
-  plasticSum: number
+  price: number;
+  plasticSum: number;
+  comment?: string;
+  isDebt?: boolean;
+  clientId?: string;
+  debtAmount?: number;
 }
 export const orderBaskedPost = async (url: string, data:IOrderBasked) => {
   try {
