@@ -135,7 +135,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
                 placeholder={"Онлайн"}
               />
             </div>
-            {Boolean(dutyValue) && (
+            {(duty || Boolean(dutyValue)) && (
               <div className="p-4 flex rounded-[12px] mt-2.5 bg-[#fff5e6] shadow items-center justify-between">
                 <span className="text-[#EC6724] text-[14px] font-medium">Qarz</span>
                 <span className="text-[#EC6724] text-[16px] font-bold">
