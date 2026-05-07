@@ -35,7 +35,7 @@ export default function ClientList({
       }}
     >
       <DialogContent className="max-w-[450px] ">
-        <p className="text-[18px] text-primary font-medium ">Клиенты</p>
+        <p className="text-[18px] text-primary font-medium ">Mijozlar</p>
         <div className="max-h-[400px] overflow-scroll">
           {flatData?.map((e) => (
             <div
@@ -61,7 +61,7 @@ export default function ClientList({
         onClick={() => setOpen(false)}
         className="rounded-[12px] mt-10 h-12 text-center w-full"
       >
-       Вибрать
+       Tanlash
       </Button>
       </DialogContent>
     </Dialog>

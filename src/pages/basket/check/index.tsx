@@ -25,7 +25,7 @@ export default function CheckPage() {
       return await orderBaskedPost(apiRoutes.orderBasketItem, data);
     },
     onSuccess: () => {
-      toast.success("Добавлен");
+      toast.success("Qo'shildi");
       setIsSelled(true);
       // QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasketItem] });
     },

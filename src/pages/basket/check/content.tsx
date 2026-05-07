@@ -91,7 +91,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
             className="text-primary text-[17px] font-medium"
             htmlFor="duty"
           >
-            Продать в долг
+            Qarzga sotish
           </Label>
         </div>
         {dutyValue && (
@@ -111,7 +111,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
           <div className="w-full ">
             <div className="p-4 flex rounded-[12px] mb-2.5 bg-background shadow items-center gap-1">
               <Banknote size={"19px"} />
-              {/*<p className="text-primary/40">Наличие</p>*/}
+              {/*<p className="text-primary/40">Naqd</p>*/}
               <input
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setSum({ ...sum, price: Number(e.target.value) })
@@ -119,7 +119,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
                 type={"number"}
                 min={0}
                 className="outline-none w-full no-spinner"
-                placeholder={"Наличие"}
+                placeholder={"Naqd"}
               />
             </div>
             <div className="p-4 flex rounded-[12px]  bg-background shadow items-center gap-1">
@@ -132,7 +132,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
                 type={"number"}
                 min={0}
                 className="outline-none w-full no-spinner"
-                placeholder={"Онлайн"}
+                placeholder={"Terminal"}
               />
             </div>
             {(duty || Boolean(dutyValue)) && (
@@ -145,7 +145,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
             )}
           </div>
           <div className="w-full flex items-center rounded-[12px] justify-center flex-col bg-background shadow text-center p-[21px]">
-            <p className="text-primary text-[13px]">Скидка</p>
+            <p className="text-primary text-[13px]">Chegirma</p>
             <div className="flex text-2xl">
               <b>
                 {total
@@ -165,7 +165,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
               setCommit(e.target.value)
             }
             className="outline-none w-full no-spinner"
-            placeholder={"Комментарий"}
+            placeholder={"Izoh"}
           />
         </div>
       </div>
@@ -197,7 +197,7 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
           }
           className="rounded-[12px] max-w-[500px]  h-12 text-center w-full"
         >
-          {isPending ? <Loader className="animate-spin" /> : ""} Продать
+          {isPending ? <Loader className="animate-spin" /> : ""} Sotish
         </Button>
       </div>
     </>
