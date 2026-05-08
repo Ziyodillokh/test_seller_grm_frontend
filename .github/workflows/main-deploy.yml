@@ -33,4 +33,5 @@ jobs:
             git pull origin main
             pnpm install
             pnpm run build
+            cp -r dist/. /home/grm/www-seller/seller/
             echo "✅ Seller frontend deployed!"
