@@ -148,12 +148,15 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
             <p className="text-primary text-[13px]">Chegirma</p>
             <div className="flex text-2xl">
               <b>
-                {total
-                  ? Math.max(
-                      ((total - (sum?.price + sum?.plasticSum)) / total) * 100,
-                      0
-                    ).toFixed(2)
-                  : 0}
+                {(() => {
+                  if (!total) return 0;
+                  // Qarz holatda: revenue = cash + plastic + qarz qoldiq (chunki to'liq olinadi)
+                  const debtPart = (duty || Boolean(dutyValue))
+                    ? Math.max(total - (sum.price + sum.plasticSum), 0)
+                    : 0;
+                  const revenue = sum.price + sum.plasticSum + debtPart;
+                  return Math.max(((total - revenue) / total) * 100, 0).toFixed(2);
+                })()}
               </b>
               <PercentIcons />
             </div>
