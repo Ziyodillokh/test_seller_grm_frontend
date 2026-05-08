@@ -28,7 +28,7 @@ export default function Content() {
   );
   const [years] = useState<string>(new Date().getFullYear().toString());
 
-  // Seller app'da "Переучёт" menu faqat filial_report.status === 'open' bo'lganda ko'rinadi
+  // Seller app'da "Pereuchot" menu faqat filial_report.status === 'open' bo'lganda ko'rinadi
   const { data: filialReportsResp } = useQuery({
     queryKey: [apiRoutes.filialReport, meUser?.filial?.id],
     queryFn: () => getAllData<{ items: any[] }, any>(apiRoutes.filialReport, { filialId: meUser?.filial?.id, limit: 1 }),
@@ -41,7 +41,7 @@ export default function Content() {
     ? [
         {
           id: 4,
-          label: "Переучёт",
+          label: "Pereuchot",
           icons: () => <Calculator color="#55554C" />,
           link: "/re-report",
         },
@@ -51,31 +51,31 @@ export default function Content() {
   const ListStaticSeller = [
     {
       id: 1,
-      label: "Отчеты",
+      label: "Hisobotlar",
       icons: () => <ClipboardList color="#55554C" />,
       link: "/reports",
     },
     {
       id: 2,
-      label: "Проверка продукта",
+      label: "Mahsulotni tekshirish",
       icons: () => <ScanLine color="#55554C" />,
       link: "/product-check",
     },
     // {
     //   id: 4,
-    //   label: "Трансфер",
+    //   label: "Transfer",
     //   icons: () => <RefreshCcw color="#55554C" />,
     //   link: "/transfer",
     // },
     {
       id: 5,
-      label: "Клиенты",
+      label: "Mijozlar",
       icons: () => <IdCard color="#55554C" />,
       link: "/client",
     },
     {
       id: 5,
-      label: "QR-код данные",
+      label: "QR kod ma'lumotlari",
       icons: () => <QrCode color="#55554C" />,
       link: "/new-qr-code",
     },
@@ -85,19 +85,19 @@ export default function Content() {
   const ListStaticOther = [
     // {
     //   id: 1,
-    //   label: "Партии",
+    //   label: "Partiyalar",
     //   icons: () => <FolderInput color="#55554C" />,
     //   link: "/partiya",
     // },
     {
       id: 2,
-      label: "Проверка продукта",
+      label: "Mahsulotni tekshirish",
       icons: () => <ScanLine color="#55554C" />,
       link: "/product-check",
     },
     {
       id: 5,
-      label: "QR-код данные",
+      label: "QR kod ma'lumotlari",
       icons: () => <QrCode color="#55554C" />,
       link: "/new-qr-code",
     },
@@ -110,18 +110,18 @@ export default function Content() {
     meUser?.position?.role == 2 ? ListStaticSeller : ListStaticOther;
 
   const monthList = [
-    { value: "1", label: "Январь" },
-    { value: "2", label: "Февраль" },
-    { value: "3", label: "Март" },
-    { value: "4", label: "Апрель" },
-    { value: "5", label: "Май" },
-    { value: "6", label: "Июнь" },
-    { value: "7", label: "Июль" },
-    { value: "8", label: "Август" },
-    { value: "9", label: "Сентябрь" },
-    { value: "10", label: "Октябрь" },
-    { value: "11", label: "Ноябрь" },
-    { value: "12", label: "Декабрь" },
+    { value: "1", label: "Yanvar" },
+    { value: "2", label: "Fevral" },
+    { value: "3", label: "Mart" },
+    { value: "4", label: "Aprel" },
+    { value: "5", label: "May" },
+    { value: "6", label: "Iyun" },
+    { value: "7", label: "Iyul" },
+    { value: "8", label: "Avgust" },
+    { value: "9", label: "Sentyabr" },
+    { value: "10", label: "Oktyabr" },
+    { value: "11", label: "Noyabr" },
+    { value: "12", label: "Dekabr" },
   ];
 
   const { data } = useQuery({
@@ -140,7 +140,7 @@ export default function Content() {
       });
     },
     onSuccess: () => {
-      toast.success("Аватар успешно изменен");
+      toast.success("Avatar o'zgartirildi");
     },
   });
 
@@ -157,7 +157,7 @@ export default function Content() {
       {meUser?.position?.role == 2 ? (
         <div className="flex w-full overflow-hidden rounded-[12px] border-border border mb-5">
           <p className="p-4  w-full  text-center text-[16px] text-primary border-border border-r">
-            {(data as unknown as { totalSellKv: number })?.totalSellKv || 0} м²
+            {(data as unknown as { totalSellKv: number })?.totalSellKv || 0} m²
           </p>
           <p className="p-4  w-full  text-center  text-[16px] text-primary border-border border-r">
             {(data as unknown as { totalSellPrice: number })?.totalSellPrice?.toFixed(2) } $

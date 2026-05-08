@@ -13,7 +13,7 @@ export default function QrTabs() {
           className="flex  h-full border-border text-center border-dashed  hover:bg-background active:bg-transparent  border items-center justify-center flex-col gap-2 p-5 pb-4 w-full"
         >
           <QRSerachIcons />
-          <p className="text-primary text-[12px] leading-[100%]"> Штрих-код</p>
+          <p className="text-primary text-[12px] leading-[100%]"> Shtrix kod</p>
         </Link>
       </div>
       <div className="p-1 w-full">
@@ -22,7 +22,7 @@ export default function QrTabs() {
           className="flex h-full border-border cursor-pointer hover:bg-background active:bg-transparent text-center  border-dashed border items-center justify-center flex-col gap-2 p-5 pb-4 w-full"
         >
           <QRBoxIcons />
-          <p className="text-primary text-[12px] leading-[100%]"> QR код</p>
+          <p className="text-primary text-[12px] leading-[100%]"> QR kod</p>
         </Link>
       </div>
     </div>

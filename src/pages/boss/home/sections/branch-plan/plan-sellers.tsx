@@ -44,11 +44,11 @@ export default function PlanSellers({
                     onClick={() => setFilialId(null)}
                     className="p-2 cursor-pointer text-[#45453C] text-[14px] flex w-full items-center gap-[5px] rounded-[6px] bg-background border-border border mb-[24px]"
                 >
-                    <ChevronLeft size={20} /> назад
+                    <ChevronLeft size={20} /> orqaga
                 </p>
                 <FilterComboboxDemoInput
                     className="w-full h-[36px] mb-[22px] bg-white rounded-[8px] border border-white"
-                    placeholder="Все филиалы"
+                    placeholder="Barcha filiallar"
                     fetchUrl="/filial/warehouse-and-filial"
                     name="filial"
                     defaultValue={filialId || undefined}
@@ -89,7 +89,7 @@ export default function PlanSellers({
 
                                     <div className="flex flex-col items-end gap-1">
                                         <div className="text-[14px]">
-                                            <span className="text-gray-500">Планка:</span>{" "}
+                                            <span className="text-gray-500">Reja:</span>{" "}
                                             <span className="font-bold">
                                                 {new Intl.NumberFormat("ru-RU")
                                                     .format(Number(item?.plan_price || 0))
@@ -98,7 +98,7 @@ export default function PlanSellers({
                                             </span>
                                         </div>
                                         <div className="text-[14px]">
-                                            <span className="text-gray-500">Сделано :</span>{" "}
+                                            <span className="text-gray-500">Bajarilgan :</span>{" "}
                                             <span className="font-bold text-[#89A143]">
                                                 {new Intl.NumberFormat("ru-RU")
                                                     .format(Number(item?.earn || 0))

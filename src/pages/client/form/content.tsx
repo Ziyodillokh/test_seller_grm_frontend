@@ -11,35 +11,35 @@ export default function FormContent() {
   return (
     <>
       <DialogHeader>
-        <DialogTitle>Добавления Кленть</DialogTitle>
+        <DialogTitle>Mijoz qo'shish</DialogTitle>
       </DialogHeader>
       <div className="grid px-2 py-1 row-start   mb-2 gap-2 lg:grid-cols-1">
         <FormTextInput
-          label="Имя Фамилия"
+          label="Ism Familiya"
           className="w-full"
           name="fullName"
-          placeholder="Имя Фамилия"
+          placeholder="Ism Familiya"
         />
     
         <FormTextInput
-          label="Номер телефона"
+          label="Telefon raqami"
           className="w-full"
           name="phone"
-          placeholder="Номер телефона"
+          placeholder="Telefon raqami"
         />
 
         <FormTextArea
-          label="Комментария"
+          label="Izoh"
           className="w-full"
           name="comment"
           
-          placeholder="Комментария"
+          placeholder="Izoh"
         />
       </div>      
       
       <DialogFooter className="!justify-start mt-2 flex">
         <Button type="submit" className="min-w-[220px] h-[44px]">
-          Сохранить
+          Saqlash
         </Button>
         <Button
           variant={"outline"}
@@ -47,7 +47,7 @@ export default function FormContent() {
           onClick={() => setId(null)}
           className="bg-white min-w-[220px] h-[44px]"
         >
-          Отменить
+          Bekor qilish
         </Button>
       </DialogFooter>
     </>

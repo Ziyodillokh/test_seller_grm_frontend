@@ -26,7 +26,7 @@ const MetrComponet = ({
   return (
     <>
       <DialogHeader>
-        <DialogTitle>Введите объём для продажи!</DialogTitle>
+        <DialogTitle>Sotuv hajmini kiriting!</DialogTitle>
       </DialogHeader>
       <Input
         type="number"
@@ -49,7 +49,7 @@ const RuloComponet = ({
   return (
     <>
       <DialogHeader>
-        <DialogTitle>Введите количество для продажи!</DialogTitle>
+        <DialogTitle>Sotuv sonini kiriting!</DialogTitle>
       </DialogHeader>
       {<CounInput count={value || 0} setCount={setValue} />}
     </>
@@ -60,15 +60,15 @@ const BronedComponet = () => {
   return (
     <>
       <DialogHeader>
-        <DialogTitle>Этот ковёр уже забронирован!</DialogTitle>
+        <DialogTitle>Bu gilam allaqachon bron qilingan!</DialogTitle>
       </DialogHeader>
       <div className="w-full">
         <div className="text-center mb-1 p-3 w-full rounded-lg bg-white ">
-          <p className="text-[12px] text-primary">Флиал</p>
+          <p className="text-[12px] text-primary">Filial</p>
           <p className="text-[18px] text-primary">Sanat Hali</p>
         </div>
         <div className="text-center  p-3 w-full rounded-lg bg-white ">
-          <p className="text-[12px] text-primary">Флиал</p>
+          <p className="text-[12px] text-primary">Filial</p>
           <p className="text-[18px] text-primary">Sanat Hali</p>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default function BronsModals() {
       setCarpetType(null);
       setValue(undefined);
       queryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
-      toast.success("Продукт добавлено успешно!");
+      toast.success("Mahsulot qo'shildi!");
     },
   });
   return (
@@ -112,7 +112,7 @@ export default function BronsModals() {
             }}
             className="rounded-xl h-[62px] text-[15px]"
           >
-            Добавить в корзину
+            Savatga qo'shish
           </Button>
         )}
       </DialogContent>

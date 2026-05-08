@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const Options = [
-  { label: "Продукты", value: "Products" },
-  { label: "Продажа", value: "Sales" },
-  // { label: "Кассы", value: "CashRegisters" },
-  { label: "Ежемесячные отчеты", value: "MonthlyReports" },
-  { label: "Остатка", value: "StockBalance" },
-  { label: "План для флиалов", value: "BranchPlan" },
-  { label: "История действий", value: "ActionHistory" }
+  { label: "Mahsulotlar", value: "Products" },
+  { label: "Sotuv", value: "Sales" },
+  // { label: "Kassalar", value: "CashRegisters" },
+  { label: "Oylik hisobotlar", value: "MonthlyReports" },
+  { label: "Qoldiq", value: "StockBalance" },
+  { label: "Filiallar uchun reja", value: "BranchPlan" },
+  { label: "Harakatlar tarixi", value: "ActionHistory" }
 ];
 
 export default function BoossSlidder() {

@@ -63,7 +63,7 @@ const CarpetCard: React.FC<ICarpetCard> = ({
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.product] });
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasketCounts] });
 
-      toast.success("Продукт добавлено успешно!");
+      toast.success("Mahsulot qo'shildi!");
     },
   });
 
@@ -108,7 +108,7 @@ const CarpetCard: React.FC<ICarpetCard> = ({
           >
             <ImageOff className="text-primary text-[20px] w-[60px] h-[60px]" />
             <p className="text-[18px] font-semibold text-primary mt-2">
-              Нет фото
+              Foto yo'q
             </p>
           </div>
         )}

@@ -45,7 +45,7 @@ export default function BarcodeQenerat() {
           text: "I found something interesting!",
           url: window.location.href,
         });
-        toast.success("Успешно поделились!");
+        toast.success("Ulashildi!");
       } catch (error) {
         console.error("Error sharing:", error);
       }
@@ -78,7 +78,7 @@ export default function BarcodeQenerat() {
             variant={"outline"}
             onClick={() => setIsQrCode("Barcode")}
           >
-            Штрих-код
+            Shtrix kod
           </Button>
           <Button
             type="button"
@@ -86,7 +86,7 @@ export default function BarcodeQenerat() {
             variant={"outline"}
             onClick={() => setIsQrCode("QrCode")}
           >
-            QR-код
+            QR kod
           </Button>
         </div>
         <div
@@ -125,7 +125,7 @@ export default function BarcodeQenerat() {
               variant={"outline"}
             >
               <Share2 size={16} />
-              Поделится
+              Ulashish
             </Button>
             <Button
               onClick={() => handlePrint()}
@@ -134,7 +134,7 @@ export default function BarcodeQenerat() {
               variant={"outline"}
             >
               <Printer size={16} />
-              Распечатать
+              Chop etish
             </Button>
             <Button
               onClick={() => downloadPDF()}
@@ -143,7 +143,7 @@ export default function BarcodeQenerat() {
               variant={"outline"}
             >
               <Download size={16} />
-              Скачать
+              Yuklab olish
             </Button>
           </div>
         )}

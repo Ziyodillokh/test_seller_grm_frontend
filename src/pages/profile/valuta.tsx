@@ -24,7 +24,7 @@ export default function Valuta() {
       </div>
       <div className="w-1/2 flex p-3 items-center justify-between text-white bg-[#E38157]">
         <p className="text-[18px] font-bold">
-          {data?.items?.[0]?.uzs.toLocaleString("uz-UZ")} сум
+          {data?.items?.[0]?.uzs.toLocaleString("uz-UZ")} so'm
         </p>
         <p className="text-[13px] font-bold"></p>
       </div>

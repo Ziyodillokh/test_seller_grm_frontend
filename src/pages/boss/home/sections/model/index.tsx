@@ -62,7 +62,7 @@ export default function BossModel() {
         }
         <FilterComboboxDemoInput
           className="w-full  h-[36px] mb-[22px] bg-white rounded-[8px] border border-white"
-          placeholder="Все филиалы"
+          placeholder="Barcha filiallar"
           fetchUrl="/filial/warehouse-and-filial"
           name="filial"
           defaultValue={filial || undefined}
@@ -77,7 +77,7 @@ export default function BossModel() {
         />
       </div>
       <BossCard
-          title="Модели"
+          title="Modellar"
           rowOne={true}
           isLoading={idLoadingCollection}
           iconComponent={() => (
@@ -85,7 +85,7 @@ export default function BossModel() {
               className={`p-3 w-12 h-12 $ bg-white text-primary rounded-[12px]`}
             />
           )}
-          filial={"Все филиалы и склад"}
+          filial={"Barcha filiallar va omborlar"}
           colums={
             flatModelsReporg?.map((item) => ({
               label: item?.title,
@@ -95,9 +95,9 @@ export default function BossModel() {
                 setModelName(item?.title)
               },
               values: [
-                item?.totalKv + " м²",
+                item?.totalKv + " m²",
                 item?.totalKvPrice + " $",
-                typeOther == "none" ? item?.totalCount + " шт": item?.totalNetProfitPrice?.toFixed(2) + "$",
+                typeOther == "none" ? item?.totalCount + " ta": item?.totalNetProfitPrice?.toFixed(2) + "$",
               ],
             })) || []
           }

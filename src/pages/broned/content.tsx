@@ -8,7 +8,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
     <>
       <BronsModals />
       <div>
-        <p className="text-center py-2 text-primary">Продуктов нет</p>
+        <p className="text-center py-2 text-primary">Mahsulot yo'q</p>
       </div>
       <div className="px-2.5  mt-4 gap-2 grid row-start grid-cols-2  pb-[17px]">
         {data.map((item) => (

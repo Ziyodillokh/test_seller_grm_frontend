@@ -12,9 +12,9 @@ export default function BronsModals() {
     <Dialog  onOpenChange={()=>setCarpetType(null)} open={carpetType=="my-broned"? true:false}>
     <DialogContent className='max-w-[300px]'>
         <DialogHeader>
-        Вы хотите снять бронирование этого ковра?
+        Bu gilamning bronini bekor qilishni xohlaysizmi?
         </DialogHeader>
-        <Button onClick={()=>setCarpetType(null)} className=' h-[62px] text-[15px]'>Да верно!</Button>
+        <Button onClick={()=>setCarpetType(null)} className=' h-[62px] text-[15px]'>Ha, to'g'ri!</Button>
     </DialogContent>
   </Dialog>
   )

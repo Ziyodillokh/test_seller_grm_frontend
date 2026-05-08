@@ -111,15 +111,15 @@ export default function FormContent() {
           type="number"
            classNameInput="h-[56px] border-border border  rounded-[0px] bg-background p-2"
           name="count"
-          placeholder={isMetric == "Metrli" ? "Длина" : "count"}
+          placeholder={isMetric == "Metrli" ? "Uzunlik" : "count"}
           disabled={!editble}
-          // label={isMetric == "Metrli" ? "Длина" : "count"}
+          // label={isMetric == "Metrli" ? "Uzunlik" : "count"}
         />
         <Button
           className="col-span-2 h-[56px] rounded-t-[0px]"
           disabled={barcode != "new" && barcode != undefined}
         >
-          Добавить
+          Qo'shish
         </Button>
       </div>
       <BarcodeQenerat />

@@ -10,30 +10,30 @@ const ProductHistoriy=() => {
     <div className='bg-black  mt-[46px]'>
       <div className='text-[#E0DFD6] text-opacity-[0.6] flex items-center gap-2 p-2 border border-b-[1px]'>
         <LoadingTerminal/>
-        <p>Исходные данные и история продукта</p>
+        <p>Asl ma'lumotlar va mahsulot tarixi</p>
       </div>
 
       <div className='text-[#00FF19]'>
         {watchFile && <div className='p-5'>
-           <p>Файл: Ghetaran_1200_12.02.2024.xlxs  download</p>
-           <p className='mt-4'>Партия:  Iran, Gheteran, 2-partiya</p>
-           <p>Дата создание: 01.01.2025</p>
-           <p className='mt-4'>Штрих код: {watchFile?.code}</p>
-           <p>Серия: 129830123</p>
-           <p>Коллекция:  {watchFile?.collection?.label}</p>
-           <p>Модель: {watchFile?.model?.label}</p>
-           <p>Размер: {watchFile?.size?.label}</p>
-           <p>Тип-ковра: {watchFile?.isMetric}</p>
-           <p>Форма: {watchFile?.shape?.label}</p>
-           <p>Цвет: {watchFile?.color?.label}</p>
-           <p>Стиль: {watchFile?.style?.label}</p>
-           <p>Количество: {watchFile?.count}</p>
-           <p>Цена в продаже:  {watchFile?.color?.label}</p>
-           <p className='mt-4'>Генерация Barcode or QR-код: ссылка</p>
-           <p className='mt-4'>1 Трансфер: Склад {'->'}  Aloqa</p>
-           <p>2 Трансфер: Aloqa {'->'}  Labzak</p>
-           <p className='mt-4'>Возврат от продажы: 12.02.2025</p>
-           <p className='my-4'>Внесен измимения в: 12.02.2025</p>
+           <p>Fayl: Ghetaran_1200_12.02.2024.xlxs  download</p>
+           <p className='mt-4'>Partiya:  Iran, Gheteran, 2-partiya</p>
+           <p>Yaratilgan sana: 01.01.2025</p>
+           <p className='mt-4'>Shtrix kod: {watchFile?.code}</p>
+           <p>Seriya: 129830123</p>
+           <p>Kolleksiya:  {watchFile?.collection?.label}</p>
+           <p>Model: {watchFile?.model?.label}</p>
+           <p>O'lcham: {watchFile?.size?.label}</p>
+           <p>Tip: {watchFile?.isMetric}</p>
+           <p>Shakl: {watchFile?.shape?.label}</p>
+           <p>Rang: {watchFile?.color?.label}</p>
+           <p>Stil: {watchFile?.style?.label}</p>
+           <p>Soni: {watchFile?.count}</p>
+           <p>Sotuv narxi:  {watchFile?.color?.label}</p>
+           <p className='mt-4'>Barcode/QR kod yaratish: havola</p>
+           <p className='mt-4'>1 Transfer: Ombor {'->'}  Aloqa</p>
+           <p>2 Transfer: Aloqa {'->'}  Labzak</p>
+           <p className='mt-4'>Sotuvdan qaytarish: 12.02.2025</p>
+           <p className='my-4'>O'zgartirish kiritildi: 12.02.2025</p>
          </div>}
 
       </div>

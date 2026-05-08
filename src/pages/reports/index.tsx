@@ -9,18 +9,18 @@ import formatPrice from "@/utils/formatPrice";
 import { useSellerDailyReport } from "./queries";
 
 const monthList = [
-  { value: "1", label: "Январь" },
-  { value: "2", label: "Февраль" },
-  { value: "3", label: "Март" },
-  { value: "4", label: "Апрель" },
-  { value: "5", label: "Май" },
-  { value: "6", label: "Июнь" },
-  { value: "7", label: "Июль" },
-  { value: "8", label: "Август" },
-  { value: "9", label: "Сентябрь" },
-  { value: "10", label: "Октябрь" },
-  { value: "11", label: "Ноябрь" },
-  { value: "12", label: "Декабрь" },
+  { value: "1", label: "Yanvar" },
+  { value: "2", label: "Fevral" },
+  { value: "3", label: "Mart" },
+  { value: "4", label: "Aprel" },
+  { value: "5", label: "May" },
+  { value: "6", label: "Iyun" },
+  { value: "7", label: "Iyul" },
+  { value: "8", label: "Avgust" },
+  { value: "9", label: "Sentyabr" },
+  { value: "10", label: "Oktyabr" },
+  { value: "11", label: "Noyabr" },
+  { value: "12", label: "Dekabr" },
 ];
 
 const yearList = Array.from({ length: 5 }, (_, i) => {

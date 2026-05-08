@@ -49,17 +49,17 @@ export default function CarpetSinglePage() {
       queryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
       queryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasketCounts] });
       
-      toast.success("Продукт добавлено успешно!");
+      toast.success("Mahsulot qo'shildi!");
       window.location.replace(import.meta.env.BASE_URL + "home");
     },
   });
   const { mutate: countMutate ,isPending:CountPending } = useCountChange({
     onSuccess: () => {
       if (isDelete) {
-        toast.success("Продукт удалено успешно!");
+        toast.success("Mahsulot o'chirildi!");
         navigate("/re-report/list");
       } else {
-        toast.success("количество изменено успешно!");
+        toast.success("Soni o'zgartirildi!");
         queryClient.invalidateQueries({ queryKey: [apiRoutes.product] });
       }
     },
@@ -87,7 +87,7 @@ export default function CarpetSinglePage() {
       });
     },
     onSuccess: () => {
-      toast.success(" Изображение успешно изменен");
+      toast.success(" Rasm o'zgartirildi");
     },
   });
   return (
@@ -100,7 +100,7 @@ export default function CarpetSinglePage() {
       <div className="my-4 rounded-[12px] mb-[35px] border-border border">
         <div className="flex w-full items-center px-[17px] border-b border-border py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Коллекция:
+            Kolleksiya:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.collection?.title}
@@ -108,7 +108,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Модель:
+            Model:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.model?.title}
@@ -116,7 +116,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Размер:
+            O'lcham:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.size?.title}
@@ -124,15 +124,15 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Объём:
+            Hajm:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
-            {(Number(data?.bar_code?.size?.x) * Number(data?.y)).toFixed(2)}м²
+            {(Number(data?.bar_code?.size?.x) * Number(data?.y)).toFixed(2)}m²
           </p>
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Цена:
+            Narx:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.collection?.collection_prices?.[0]?.priceMeter}$
@@ -140,7 +140,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-[#FF7700]">
-            Цена объёма:
+            Hajm narxi:
           </p>
           <p className="w-full text-[16px] font-medium text-[#FF7700]">
             {(
@@ -153,7 +153,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Тип-ковра:
+            Tip:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.isMetric ? "Metrli" : "Donabay"}
@@ -161,17 +161,17 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            {data?.bar_code?.isMetric ? "Длина:" : "Количество:"}
+            {data?.bar_code?.isMetric ? "Uzunlik:" : "Soni:"}
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {count}
 
-            {data?.bar_code?.isMetric ? "" : "шт"}
+            {data?.bar_code?.isMetric ? "" : "ta"}
           </p>
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Форма:
+            Shakl:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.shape?.title}{" "}
@@ -179,7 +179,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Цвет:
+            Rang:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.color?.title}{" "}
@@ -187,7 +187,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Стиль:
+            Stil:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.style?.title}{" "}
@@ -195,7 +195,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Страна:
+            Davlat:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.country?.title}
@@ -203,7 +203,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Поставщик:
+            Yetkazib beruvchi:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
             {data?.bar_code?.factory?.title}
@@ -211,7 +211,7 @@ export default function CarpetSinglePage() {
         </div>
        <div className="flex w-full items-center px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Партия:
+            Partiya:
           </p>
           <p className="w-full text-[16px] font-medium text-primary">
           {data?.partiya
@@ -221,7 +221,7 @@ export default function CarpetSinglePage() {
         </div>
         <div className="flex w-full items-start px-[17px] py-3">
           <p className="w-full text-[16px] font-medium text-primary/60">
-            Штрих-код:
+            Shtrix kod:
           </p>
           <div className="text-start w-full items-start flex flex-col justify-start">
           <p className="w-full text-[16px] font-medium text-primary">
@@ -248,7 +248,7 @@ export default function CarpetSinglePage() {
             className="h-[56px] flex items-center justify-center gap-1   w-full mt-2 mb-12"
           >
             <BusketIcons />
-            Добавить в корзину
+            Savatga qo'shish
           </Button>
         </>
       ) : (
@@ -271,14 +271,14 @@ export default function CarpetSinglePage() {
           <Popover>
             <PopoverTrigger asChild>
               <p className="text-center text-[#F57457]  cursor-pointer text-[14px] mt-[32px] mb-[24px]">
-                Удалить продукт
+                Mahsulotni o'chirish
               </p>
             </PopoverTrigger>
             <PopoverContent className="w-80">
-              <p>Вы действительно хотите Удалить продукт?</p>
+              <p>Mahsulotni o'chirishni xohlaysizmi?</p>
               <div className="flex justify-end gap-2 mt-2">
                 <PopoverClose>
-                  <Button variant={"outline"}>Отмена</Button>
+                  <Button variant={"outline"}>Bekor qilish</Button>
                 </PopoverClose>
                 <Button
                   className="bg-[#F57457]"
@@ -296,7 +296,7 @@ export default function CarpetSinglePage() {
                     }
                   }}
                 >
-                  Удалить
+                  O'chirish
                 </Button>
               </div>
             </PopoverContent>
@@ -317,7 +317,7 @@ export default function CarpetSinglePage() {
             }}
             className="h-[48px  flex items-center mx-auto justify-center gap-1 rounded-[12px] w-full max-w-[336px]  mt-2 mb-12"
           >
-            сохранить
+            Saqlash
           </Button>
         </>
       ) : (

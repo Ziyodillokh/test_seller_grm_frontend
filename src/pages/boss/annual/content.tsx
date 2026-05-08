@@ -17,7 +17,7 @@ export default function HomeContent() {
       return await UpdateData(apiRoutes.planYear, id || '',body);
     },
     onSuccess: () => {
-      toast.success("Аватар успешно изменен");
+      toast.success("Avatar o'zgartirildi");
     },
   });
   
@@ -33,7 +33,7 @@ export default function HomeContent() {
               year={e?.year}
               yearlyGoal={e?.yearlyGoal}
               collectedAmount={e?.collectedAmount}
-              status="Продалжается"
+              status="Jarayonda"
             />
           ))}
       </div>

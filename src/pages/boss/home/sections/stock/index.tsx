@@ -120,11 +120,11 @@ export default function BossStock() {
             name="type"
             option={[
               {
-                label: "Отчет об остатке",
+                label: "Qoldiq hisoboti",
                 value: "none",
               },
               {
-                label: "Отчет о продажах",
+                label: "Sotuv hisoboti",
                 value: "other",
               },
             ]}
@@ -134,7 +134,7 @@ export default function BossStock() {
         )}
         <FilterComboboxDemoInput
           className="w-full  h-[36px] mb-[22px] bg-white rounded-[8px] border border-white"
-          placeholder="Все филиалы"
+          placeholder="Barcha filiallar"
           fetchUrl="/filial/warehouse-and-filial"
           name="filial"
           isFilter={false}
@@ -162,7 +162,7 @@ export default function BossStock() {
           }
           plaasticSum={
             (remainingProductsCollection?.meta?.totals?.totalKv?.toFixed(2) ||
-              0) + " м²"
+              0) + " m²"
           }
           iconComponent={() => (
             <ChartPie
@@ -170,7 +170,7 @@ export default function BossStock() {
             />
           )}
           isLoading={idLoadingProductsCollection}
-          filial={"Все филиалы и склады"}
+          filial={"Barcha filiallar va omborlar"}
           colums={
             remainingProductsCollection?.data
               ? remainingProductsCollection?.data?.map((item) => ({
@@ -179,9 +179,9 @@ export default function BossStock() {
                     setRemainingProductsCollectionId(item?.country);
                   },
                   values: [
-                    item?.totalKv?.toFixed(2) + "м²",
+                    item?.totalKv?.toFixed(2) + "m²",
                     item?.totalPrice?.toFixed(2) + "$",
-                    typeOther == "none" ? item?.totalCount + " шт": item?.totalNetProfitPrice?.toFixed(2) + "$",
+                    typeOther == "none" ? item?.totalCount + " ta": item?.totalNetProfitPrice?.toFixed(2) + "$",
                   ],
                 }))
               : []
@@ -193,13 +193,13 @@ export default function BossStock() {
         <BossCard
           rowOne={true}
           isLoading={idLoadingCollectionFactory}
-          title="Поставщикам"
+          title="Yetkazib beruvchilar"
           iconComponent={() => (
             <Building2
               className={`p-3 w-12 h-12 $ bg-white text-primary rounded-[12px]`}
             />
           )}
-          filial={"Все Поставщики"}
+          filial={"Barcha yetkazib beruvchilar"}
           colums={
             collectionRemainingfactory?.data?.map((item) => ({
               label: item?.factory?.title,
@@ -207,9 +207,9 @@ export default function BossStock() {
                 setCollectionRemainingId(item?.factory);
               },
               values: [
-                (+item?.totalKv)?.toFixed(2) + " м²",
+                (+item?.totalKv)?.toFixed(2) + " m²",
                 Number(item?.totalPrice)?.toFixed(2) + " $",
-                typeOther == "none" ? item?.totalCount + " шт": item?.totalNetProfitPrice?.toFixed(2) + "$",
+                typeOther == "none" ? item?.totalCount + " ta": item?.totalNetProfitPrice?.toFixed(2) + "$",
               ],
             })) || []
           }
@@ -218,7 +218,7 @@ export default function BossStock() {
 
       {collectionRemainingId && (
         <BossCard
-          title="Коллекциям"
+          title="Kolleksiyalar"
           rowOne={true}
           isLoading={idLoadingCollection}
           iconComponent={() => (
@@ -226,7 +226,7 @@ export default function BossStock() {
               className={`p-3 w-12 h-12 $ bg-white text-primary rounded-[12px]`}
             />
           )}
-          filial={"Все филиалы и склад"}
+          filial={"Barcha filiallar va omborlar"}
           colums={
             flatCollectionRemaining?.map((item) => ({
               label: item?.collection?.title,
@@ -236,9 +236,9 @@ export default function BossStock() {
                 setCollectionName(item?.collection?.title);
               },
               values: [
-                item?.totalKv?.toFixed(2) + " м²",
+                item?.totalKv?.toFixed(2) + " m²",
                 item?.totalPrice.toFixed(2) + " $",
-                typeOther == "none" ? item?.totalCount + " шт": item?.totalNetProfitPrice?.toFixed(2) + "$",
+                typeOther == "none" ? item?.totalCount + " ta": item?.totalNetProfitPrice?.toFixed(2) + "$",
               ],
             })) || []
           }

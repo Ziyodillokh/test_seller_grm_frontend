@@ -19,7 +19,7 @@ export default function QrTabs(props: IProps) {
           >
             <QRSerachIcons />
             <p className="text-primary text-[12px] leading-[100%]">
-              Штрих-код
+              Shtrix kod
             </p>
           </Link>
       )}
@@ -29,7 +29,7 @@ export default function QrTabs(props: IProps) {
           className="flex cursor-pointer  text-center  items-center justify-center py-5 gap-2  w-full"
         >
           <QRBoxIcons />
-          <p className="text-primary text-[12px] leading-[100%]"> {props?.qrCodeText || "QR код"} </p>
+          <p className="text-primary text-[12px] leading-[100%]"> {props?.qrCodeText || "QR kod"} </p>
         </Link>
       </div>
     </div>

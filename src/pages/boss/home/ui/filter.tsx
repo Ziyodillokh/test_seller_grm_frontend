@@ -8,7 +8,7 @@ export default function Filter() {
          <SearchInput className="p-2 py-1 w-full rounded-[6px] bg-white border-border/40 border" />
         <div className="p-2.5 cursor-pointer bg-[#509CC4]   rounded-[6px] inline-flex items-center gap-0.5 text-white">
             <ListFilter/>
-        Фильтр
+        Filtr
         </div>
     </div>  
   )

@@ -114,7 +114,7 @@ export default function Header() {
             className="flex cursor-pointer w-full text-[16px] text-primary gap-1 items-center px-2.5 py-[15px]"
           >
             <ChevronLeft />
-            Назад
+            Orqaga
           </div>
         )}
            { 

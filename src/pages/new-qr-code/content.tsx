@@ -35,16 +35,16 @@ export default function Content() {
     api
       .put(apiRoutes.qrSave + `/${qrcode}`, { bar_code: bar_code_id })
       .then(() => {
-        toast.success("Отправлено успешно");
+        toast.success("Yuborildi muvaffaqiyatli");
         navigate("/");
       })
-      .catch(() => toast.error("Не удалось отправить"));
+      .catch(() => toast.error("Yuborib bo'lmadi"));
   };
 
   return (
     <div className="w-full border-border px-5 border-r">
       <p className="text-center pt-[30px] text-primary mb-[12px]">
-        Отсканируйте продукта
+        Mahsulotni skanerlang
       </p>
       {
         id ? <div className="text-center">
@@ -67,7 +67,7 @@ export default function Content() {
             onClick={() => navigate(`/qr-code?type=barcode&link=new-qr-code`)}
             className="absolute right-0.5 top-0.5"
           >
-            <ScanLine /> Сканировать
+            <ScanLine /> Skanerlash
           </Button> */}
         </div>
 
@@ -138,7 +138,7 @@ export default function Content() {
         onClick={() => handleSaveQR()}
         className="w-full my-3 h-12"
       >
-        Сохранить
+        Saqlash
       </Button>
     </div>
   );

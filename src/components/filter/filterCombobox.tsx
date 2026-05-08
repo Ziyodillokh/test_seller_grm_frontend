@@ -123,7 +123,7 @@ export default function FilterComboboxDemoInput<IData, TQuery>({
         value={value?.value || QValue}
         className={"w-[90%] border-0"}
         isLoading={isLoading}
-        options={isAll? [ {label:"все",value:undefined as unknown as string},...memoizedData]:memoizedData}
+        options={isAll? [ {label:"barchasi",value:undefined as unknown as string},...memoizedData]:memoizedData}
         
         placeholder={placeholder ? t(placeholder) : ""}
         onChange={(event) => {

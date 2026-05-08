@@ -39,7 +39,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
       return await DeleteData(apiRoutes.orderBasket, id);
     },
     onSuccess: () => {
-      toast.success("Удалено");
+      toast.success("O'chirildi");
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasketCounts] });
     },
@@ -50,7 +50,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
       return await incrementData(apiRoutes.orderBasket, id, x);
     },
     onSuccess: () => {
-      toast.success("Обновлено");
+      toast.success("Yangilandi");
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
     },
   });
@@ -65,10 +65,10 @@ export default function Content({ data }: { data: ProductsData[] }) {
       api
         .post("/transfer", body)
         .then(() => {
-          toast.success("Отправлено успешно");
+          toast.success("Yuborildi muvaffaqiyatli");
           navigate("/");
         })
-        .catch(() => toast.error("Не удалось отправить"));
+        .catch(() => toast.error("Yuborib bo'lmadi"));
   };
   
   return (
@@ -80,23 +80,23 @@ export default function Content({ data }: { data: ProductsData[] }) {
           fieldNames={{ value: "id", label: "title" }}
           fetchUrl="/filial"
           name="from"
-          label="Откуда"
+          label="Qayerdan"
           disabled={true}
           classNameChild="p-2"
-          placeholder="Филиал"
+          placeholder="Filial"
         />
         <FormComboboxDemoInput
           fieldNames={{ value: "id", label: "title" }}
           fetchUrl="/filial"
           name="to"
-          label="Куда"
+          label="Qayerga"
           classNameChild="p-2"
-          placeholder="Филиал"
+          placeholder="Filial"
         />
          
         </form>
         </FormProvider>}
-      {/* <QrTabs  qrCodeText="Отсканируйте штрих-код или QR-код." showBarcode="" type="busket" link={"basket"} /> */}
+      {/* <QrTabs  qrCodeText="Shtrix kod yoki QR kodni skanerlang." showBarcode="" type="busket" link={"basket"} /> */}
     
      <div  className="mt-5.5 px-2.5">
      {data?.length
@@ -140,7 +140,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
           }}
         className="rounded-[12px] max-w-[500px] h-12 text-center w-full"
       >
-       { meUser?.position?.role == 0 || meUser?.position?.role == 7 ? "Отправить":"Оформить"} 
+       { meUser?.position?.role == 0 || meUser?.position?.role == 7 ? "Yuborish":"Rasmiylashtirish"} 
       </Button>
      </div>
     </div>

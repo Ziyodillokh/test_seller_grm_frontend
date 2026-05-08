@@ -112,7 +112,7 @@ const ActionPage = () => {
       queryClient.invalidateQueries({ queryKey: [apiRoutes.reportProductRemaining] });
       
       setId("");
-      toast.success("Продукт добавлено успешно!");
+      toast.success("Mahsulot qo'shildi!");
     },
   });
 

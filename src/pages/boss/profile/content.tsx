@@ -7,13 +7,13 @@ import LogoutComp from "@/components/logout";
 const ListStatic = [
   {
     id: 1,
-    label: "Годовой план",
+    label: "Yillik reja",
     icons: () => <Receipt size={24} color="#55554C" />,
     link: "/boss/annual",
   },
   {
     id: 2,
-    label: "Инвентаризация",
+    label: "Inventarizatsiya",
     icons: () => <CalendarClock   size={24} color="#55554C" />,
     link: "/boss/profile",
   },

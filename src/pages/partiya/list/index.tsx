@@ -33,11 +33,11 @@ export default function PartiyaList() {
           expense={item?.expense}
           status={
             item?.partiya_status == "new"
-              ? "Открыто"
+              ? "Ochiq"
               : item?.partiya_status == "pending" ||
                   item?.partiya_status == "closed"
-                ? "В ожидании"
-                : "Закрыто"
+                ? "Kutilmoqda"
+                : "Yopiq"
           }
         />
       ))}

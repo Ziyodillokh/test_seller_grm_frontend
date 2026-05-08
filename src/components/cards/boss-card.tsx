@@ -88,7 +88,7 @@ export default function BossCard({
           )}
           {volume && (
             <p className="text-[#509CC4] font-semibold text-[16px]">
-              {volume.toFixed(2)} м²
+              {volume.toFixed(2)} m²
             </p>
           )}
            {pricelast && (

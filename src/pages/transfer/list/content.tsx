@@ -45,7 +45,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
       return await DeleteData(apiRoutes.orderBasket, id);
     },
     onSuccess: () => {
-      toast.success("Удалено");
+      toast.success("O'chirildi");
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasketCounts] });
     },
@@ -56,7 +56,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
       return await incrementData(apiRoutes.orderBasket, id, x);
     },
     onSuccess: () => {
-      toast.success("Обновлено");
+      toast.success("Yangilandi");
       QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
     },
   });
@@ -71,13 +71,13 @@ export default function Content({ data }: { data: ProductsData[] }) {
     api
       .post("/transfer/basket", body)
       .then(() => {
-        toast.success("Отправлено успешно");
+        toast.success("Yuborildi muvaffaqiyatli");
 
         navigate("/");
         setLoading(false);
       })
       .catch(() => {
-        toast.error("Не удалось отправить");
+        toast.error("Yuborib bo'lmadi");
         setLoading(false);
       });
   };
@@ -92,7 +92,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
             disabled={true}
             classNameChild="p-2 rounded-tl-[12px]"
             className="rounded-2xl"
-            placeholder="Филиал"
+            placeholder="Filial"
           />
           <FormComboboxDemoInput
             fieldNames={{ value: "id", label: "title" }}
@@ -108,7 +108,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
                 } )
               };
             }}
-            placeholder="Филиал"
+            placeholder="Filial"
           />
           <FormComboboxDemoInput
             fieldNames={{ value: "id", label: "firstName" }}
@@ -119,7 +119,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
             }}
             disabled={!form?.watch("to.value")}
             name="user"
-            placeholder="Курьер"
+            placeholder="Kuryer"
             classNameChild="p-2 rounded-b-[12px]"
           />
         </form>
@@ -161,7 +161,7 @@ export default function Content({ data }: { data: ProductsData[] }) {
         disabled={loading}
         className=" max-w-[500px] rounded-[12px] h-12 text-center w-full"
       >
-        {loading ? <Loader className="animate-spin" /> : ""} Отправить
+        {loading ? <Loader className="animate-spin" /> : ""} Yuborish
       </Button>
      </div>
     </div>

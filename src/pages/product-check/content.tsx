@@ -9,7 +9,7 @@ export default function Content() {
   return (
     <div className="w-full border-border px-5 border-r">
       <p className="text-center pt-[30px] text-primary mb-[12px]">
-        Отсканируйте продукта
+        Mahsulotni skanerlang
       </p>
       <QrTabs  link={"product-check"} />
       <div className="grid row-start  mt-[23px] grid-cols-2">

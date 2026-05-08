@@ -16,14 +16,14 @@ export default function LogoutComp() {
     <Popover>
     <PopoverTrigger asChild>
       <p className="text-center cursor-pointer text-primary text-[14px] mt-[50px]">
-        Выйти из аккаунта
+        Akkauntdan chiqish
       </p>
     </PopoverTrigger>
     <PopoverContent className="w-80">
-      <p>Вы действительно хотите выйти из аккаунта?</p>
+      <p>Akkauntdan chiqishni xohlaysizmi?</p>
       <div className="flex justify-end gap-2 mt-2">
         <PopoverClose>
-          <Button variant={"outline"}>Отмена</Button>
+          <Button variant={"outline"}>Bekor qilish</Button>
         </PopoverClose>
         <Button
           onClick={() => {
@@ -31,7 +31,7 @@ export default function LogoutComp() {
             removeUserMe();
           }}
         >
-          Выйти
+          Chiqish
         </Button>
       </div>
     </PopoverContent>

@@ -51,7 +51,7 @@ export default function BossTotalSales() {
           <FilterComboboxDemoInput
             isFilter={false}
             className="w-full pl-1 h-[39px] mb-[22px] bg-white rounded-[7px] border border-border"
-            placeholder="Все"
+            placeholder="Barchasi"
             name="type"
             option={[
               {
@@ -75,10 +75,10 @@ export default function BossTotalSales() {
           personStatus="success"
           // personName={item?.casher?.firstName}
           status={item?.title}
-          statusColor={  item?.type == "Приход"?`bg-[#89A143]`:"bg-[#E38157]"}
+          statusColor={  item?.type == "Kirim"?`bg-[#89A143]`:"bg-[#E38157]"}
             key={item?.id}
             iconComponent={
-              item?.type == "Приход"
+              item?.type == "Kirim"
                 ? () => (
                     <Plus
                       className={`p-3 w-12 h-12 text-white bg-[#89A143] rounded-[12px]`}
@@ -90,8 +90,8 @@ export default function BossTotalSales() {
                     />
                   )
             }
-            price={item?.type == "Приход"? item?.price + " $"  :undefined }
-            priceSecond={item?.type == "Приход"? undefined:item?.price + "$"}
+            price={item?.type == "Kirim"? item?.price + " $"  :undefined }
+            priceSecond={item?.type == "Kirim"? undefined:item?.price + "$"}
             date={format(new Date(item?.date), "dd MMMM yyyy")}
             colums={colms2(item as unknown as CashFlowsFilteredData) }
           />

@@ -60,10 +60,10 @@ export default function SingleCliennt() {
 
       <div className="flex gap-2 mt-5 items-center ">
         <div className="w-2/3">
-          <p className="text-[13px] text-primary mb-2">Продать в долг</p>
+          <p className="text-[13px] text-primary mb-2">Qarzga sotish</p>
           <div className="p-4 flex rounded-[12px] mb-0.5 bg-card items-center gap-1">
             <Banknote color="#55554C" size={"18px"} />
-            {/*<p className="text-primary/40">Наличие</p>*/}
+            {/*<p className="text-primary/40">Naqd</p>*/}
             <input
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const value = e.target.value === "" ? undefined : Number(e.target.value);
@@ -73,13 +73,13 @@ export default function SingleCliennt() {
               max={data?.client?.owed}
               value={dataResult.amount ?? ""}
               className="outline-none w-full no-spinner"
-              placeholder={"Наличие"}
+              placeholder={"Naqd"}
             />
           </div>
         </div>
 
         <div className="w-1/3">
-          <p className="text-[13px] text-primary mb-2">Долг</p>
+          <p className="text-[13px] text-primary mb-2">Qarz</p>
           <div className="p-4 flex rounded-[12px] mb-0.5 bg-card items-center gap-1">
             <Minus color="#55554C" size={"18px"} />
             <p className="text-[18px] font-bold text-primary/40">
@@ -88,7 +88,7 @@ export default function SingleCliennt() {
           </div>
         </div>
         <div className="w-1/3">
-          <p className="text-[13px] text-primary mb-2">Дано</p>
+          <p className="text-[13px] text-primary mb-2">Berildi</p>
           <div className="p-4 flex rounded-[12px] mb-0.5 bg-card items-center gap-1">
             <Plus color="#55554C" size={"18px"} />
             <p className="text-[18px] font-bold text-primary/40">
@@ -112,7 +112,7 @@ export default function SingleCliennt() {
         {
             isPending ? <Loader className="animate-spin"/>:""
         }
-        Оплатить 
+        To'lash 
       </Button>
       {/* <Button
          disabled={(data?.client?.owed || 0 ) > 0 ||isPendingCompleteDebt }
@@ -122,7 +122,7 @@ export default function SingleCliennt() {
          {
             isPendingCompleteDebt ? <Loader className="animate-spin"/>:""
         }
-        Оформить продажу
+        Sotuvni rasmiylashtirish
       </Button> */}
     </div>
   );

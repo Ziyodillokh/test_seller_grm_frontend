@@ -50,7 +50,7 @@ export default function BranchPlan() {
       return await UpdateData(apiRoutes.filialPlan, encodeURIComponent(id) || '', body);
     },
     onSuccess: () => {
-      toast.success("План успешно изменен");
+      toast.success("Reja o'zgartirildi");
     },
   });
 
@@ -69,7 +69,7 @@ export default function BranchPlan() {
     <>
       <div className=" border-border border-b mb-5 flex">
         <p className=" p-[20px] py-3 border-border border-r  text-[14px] w-full">
-          <p> Планка:</p>
+          <p> Reja:</p>
           <span className="font-bold ">
             {new Intl.NumberFormat("ru-RU")
               .format(
@@ -83,7 +83,7 @@ export default function BranchPlan() {
           </span>
         </p>
         <p className=" p-[20px] py-3 border-border border-r  text-[14px] w-full">
-          <p> Сделанны:</p>
+          <p> Bajarilgan:</p>
           <span className="font-bold text-[#89A143]">
             {new Intl.NumberFormat("ru-RU")
               .format(

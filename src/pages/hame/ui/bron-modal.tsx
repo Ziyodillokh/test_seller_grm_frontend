@@ -28,7 +28,7 @@ export default function BronModal() {
       <DialogContent className="max-w-[300px] z-1000">
         <DialogHeader className="max-w-[208px] mx-auto">
           <DialogTitle className="text-center text-[19px] font-bold ">
-            Этот ковёр <br /> уже забронирован!
+            Bu gilam <br /> allaqachon bron qilingan!
           </DialogTitle>
         </DialogHeader>
         <div className="w-full ">
@@ -42,7 +42,7 @@ export default function BronModal() {
                   {item?.seller?.firstName}
                 </p>
                 <p className="text-[14px] text-primary">
-                  {item?.is_transfer ? "Трансфер" : "Карзинка"}
+                  {item?.is_transfer ? "Transfer" : "Savat"}
                 </p>
               </div>
               <div

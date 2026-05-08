@@ -13,7 +13,7 @@ export default function BossProfileTop() {
         return await UpdatePatchData(apiRoutes.user, meUser?.id || '',{avatar:uuid});
       },
       onSuccess: () => {
-        toast.success("Аватар успешно изменен");
+        toast.success("Avatar o'zgartirildi");
       },
     });
   return (
@@ -29,7 +29,7 @@ export default function BossProfileTop() {
       <p className="my-2.5 text-[19px] font-semibold text-primary">
         {meUser?.firstName + " " + meUser?.lastName}{" "}
       </p>
-      <p className="text-[14px] text-primary">Владелец бизнеса</p>
+      <p className="text-[14px] text-primary">Biznes egasi</p>
      </div>
     </div>
   )

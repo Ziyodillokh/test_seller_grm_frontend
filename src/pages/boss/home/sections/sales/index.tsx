@@ -16,31 +16,31 @@ interface IColums {
 }
 // const colmsArr = [
 //   {
-//     label: "Продажа",
+//     label: "Sotuv",
 //     values: ["51505.80"],
 //   },
 //   {
-//     label: "Приход",
+//     label: "Kirim",
 //     values: ["51505.80"],
 //   },
 //   {
-//     label: "Расход",
+//     label: "Chiqim",
 //     values: ["51505.80"],
 //   },
 //   {
-//     label: "Инкассация",
+//     label: "Inkassatsiya",
 //     values: ["51505.80"],
 //   },
 //   {
-//     label: "Скидка",
+//     label: "Chegirma",
 //     values: ["51505.80"],
 //   },
 //   {
-//     label: "Навар",
+//     label: "Foyda",
 //     values: ["51505.80"],
 //   },
 //   {
-//     label: "Объём",
+//     label: "Hajm",
 //     values: ["51505.80"],
 //   },
 // ];
@@ -94,7 +94,7 @@ export default function BossSales() {
         limit: 10,
         page: 1,
         search: search || undefined,
-        tip: (kassaId ||kassaReportId )? (type == "salse" || type == "return")  ?  "order" : (type == "Приход" || type == "Расход") ? "cashflow" :undefined: "order",
+        tip: (kassaId ||kassaReportId )? (type == "salse" || type == "return")  ?  "order" : (type == "Kirim" || type == "Chiqim") ? "cashflow" :undefined: "order",
         sellerId:user || undefined,
         filialId:filial || undefined,
         month: kassaReportId|| kassaId? undefined: month  || undefined,
@@ -103,7 +103,7 @@ export default function BossSales() {
         toDate:toDate|| undefined,
         kassaId: kassaId || undefined,
         kassaReport:kassaReportId || undefined,
-        type: (kassaId ||kassaReportId )? type == "salse" ? "Приход": type == "return"? "Расход" : type || undefined : undefined
+        type: (kassaId ||kassaReportId )? type == "salse" ? "Kirim": type == "return"? "Chiqim" : type || undefined : undefined
       },
     }
   );
@@ -137,23 +137,23 @@ export default function BossSales() {
    {kassaReportId? "": <FilterComboboxDemoInput
         isFilter={false}
         className="w-full pl-1 h-[39px] mb-[22px] bg-white rounded-[7px] border border-border"
-        placeholder="Все" 
+        placeholder="Barchasi" 
         name="type"
         option={[
           {
-            label:"Приход",
-            value:"Приход"
+            label:"Kirim",
+            value:"Kirim"
           },
           {
-            label:"Расход",
-            value:"Расход"
+            label:"Chiqim",
+            value:"Chiqim"
           },
           {
-            label:"Продажа",
+            label:"Sotuv",
             value:"salse"
           },
           {
-            label:"Возврат",
+            label:"Qaytarish",
             value:"return"
           }
         ]}
@@ -166,7 +166,7 @@ export default function BossSales() {
     <FilterComboboxDemoInput
       isFilter={false}
         className="w-full  h-[36px] mb-[22px] bg-white rounded-[8px] border border-white"
-        placeholder="Все филиалы" 
+        placeholder="Barcha filiallar" 
         fetchUrl="/filial/warehouse-and-filial"
          name="filial"
          icons={
@@ -193,7 +193,7 @@ export default function BossSales() {
             personSecondStatus={item?.order?.status == "accepted" ? "success": item?.order?.status == "rejected" ? "fail" :"panding" }
             key={item?.id} 
             iconComponent={
-              item?.type == "Приход"
+              item?.type == "Kirim"
                 ? () => (
                     <Plus
                       className={`p-3 w-12 h-12 text-white bg-[#89A143] rounded-[12px]`}
@@ -206,7 +206,7 @@ export default function BossSales() {
                   )
             }
             price={
-             ( item?.price && item?.type == "Приход" )
+             ( item?.price && item?.type == "Kirim" )
                 ? `+${item?.order ? (item?.price - item?.order?.plasticSum)?.toFixed(2): item?.price?.toFixed(2)}$`
                 : undefined
             }

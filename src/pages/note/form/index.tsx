@@ -31,7 +31,7 @@ const ActionPage = () => {
         });
         setId(null)
       queryClient.invalidateQueries({ queryKey: [apiRoutes.notes] });
-      toast.success("добавлено успешно!");
+      toast.success("muvaffaqiyatli qo'shildi!");
     },
   });
 

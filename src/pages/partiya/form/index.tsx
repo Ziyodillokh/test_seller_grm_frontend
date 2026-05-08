@@ -130,9 +130,9 @@ const ActionPage = () => {
       queryClient.invalidateQueries({ queryKey: [apiRoutes.excelProducts] })
 
       if (idLoc == "new") {
-        toast.success("Продукт добавлено успешно");
+        toast.success("Mahsulot qo'shildi");
       } else {
-        toast.success("Продукт добавлено успешно");
+        toast.success("Mahsulot qo'shildi");
       }
     },
   });

@@ -2,14 +2,14 @@ import { parseAsString, useQueryState } from "nuqs";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const data = [
-  { label: "Продукти", value: "Продукти", pathname: "/transfer" },
-  { label: "Трансфер", value: "all", pathname: "/transfer/list" },
+  { label: "Mahsulotlar", value: "Mahsulotlar", pathname: "/transfer" },
+  { label: "Transfer", value: "all", pathname: "/transfer/list" },
 ];
 
 export default function TabBar() {
   const [, setTab] = useQueryState(
     "tab",
-    parseAsString.withDefault("Продукти")
+    parseAsString.withDefault("Mahsulotlar")
   );
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,7 +23,7 @@ export default function TabBar() {
           key={e.value}
           onClick={() => {
             setTab(e?.value);
-            if (e?.value == "Продукти") {
+            if (e?.value == "Mahsulotlar") {
               navigate("/transfer");
             } else {
               navigate("/transfer/list");

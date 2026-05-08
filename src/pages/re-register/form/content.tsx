@@ -123,7 +123,7 @@ export default function FormContent({isPending}:{isPending:boolean}) {
           type="number"
           classNameInput="h-[50px] p-2 rounded-none"
           name="value"
-          placeholder={isMetric == "Metrli" ? "Длина" : "count"}
+          placeholder={isMetric == "Metrli" ? "Uzunlik" : "count"}
           
           // disabled={tip !== "переучет" || reportStatus == "closed"}
         />

@@ -7,10 +7,10 @@ export default function TabBar() {
   const {id}= useParams() 
 
   const data = [
-    { label: "Сканирование", value: "Сканирование", pathname: `/partiya/${id}` },
-    { label: "Оприходован", value: "переучет", pathname: `/partiya/${id}/table` },
-    { label: "Излишки", value: "излишки", pathname: `/partiya/${id}/table` },
-    { label: "Дефицит", value: "дефицит", pathname: `/partiya/${id}/table` },
+    { label: "Skanerlash", value: "Сканирование", pathname: `/partiya/${id}` },
+    { label: "Hisobga olindi", value: "переучет", pathname: `/partiya/${id}/table` },
+    { label: "Ortiqcha", value: "излишки", pathname: `/partiya/${id}/table` },
+    { label: "Kamomad", value: "дефицит", pathname: `/partiya/${id}/table` },
   ];
   const [tab, setTab] = useQueryState(
     "tab",

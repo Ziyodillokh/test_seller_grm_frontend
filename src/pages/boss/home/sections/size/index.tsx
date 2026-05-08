@@ -59,7 +59,7 @@ export default function BossSize() {
         }
         <FilterComboboxDemoInput
           className="w-full  h-[36px] mb-[22px] bg-white rounded-[8px] border border-white"
-          placeholder="Все филиалы"
+          placeholder="Barcha filiallar"
           fetchUrl="/filial/warehouse-and-filial"
           name="filial"
           isFilter={false}
@@ -73,7 +73,7 @@ export default function BossSize() {
         />
       </div>
       <BossCard
-          title="Размеры"
+          title="O'lchamlar"
           rowOne={true}
           isLoading={idLoadingCollection}
           iconComponent={() => (
@@ -81,14 +81,14 @@ export default function BossSize() {
               className={`p-3 w-12 h-12 $ bg-white text-primary rounded-[12px]`}
             />
           )}
-          filial={"Все филиалы и склад"}
+          filial={"Barcha filiallar va omborlar"}
           colums={
             flatSizeReporg?.map((item) => ({
               label: item?.title,
               values: [
-                item?.totalKv + " м²",
+                item?.totalKv + " m²",
                 item?.totalKvPrice + " $",
-                typeOther == "none" ? item?.totalCount + " шт": item?.totalNetProfitPrice?.toFixed(2) + "$",
+                typeOther == "none" ? item?.totalCount + " ta": item?.totalNetProfitPrice?.toFixed(2) + "$",
               ],
             })) || []
           }

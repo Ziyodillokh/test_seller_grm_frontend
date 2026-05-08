@@ -7,7 +7,7 @@ enum OrderEnum {
 export type CashFlowsData = {
   id: string;
   price: number;
-  type: string; // e.g., "Приход"
+  type: string; // e.g., "Kirim"
   tip: string; // e.g., "order"
   comment: string;
   title: string;

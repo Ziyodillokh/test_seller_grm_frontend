@@ -14,35 +14,35 @@ import { KassaData } from "../../type";
 
 const colms2 = (item: KassaData) => [
   {
-    label: "Продажа",
+    label: "Sotuv",
     values: [item?.sale],
   },
   {
-    label: "Терминал",
+    label: "Terminal",
     values: [item?.plasticSum],
   },
   {
-    label: "Приход",
+    label: "Kirim",
     values: [item?.income],
   },
   {
-    label: "Расход",
+    label: "Chiqim",
     values: [item?.expense],
   },
   {
-    label: "Инкассация",
+    label: "Inkassatsiya",
     values: [item?.cash_collection],
   },
   {
-    label: "Скидка",
+    label: "Chegirma",
     values: [item?.discount],
   },
   {
-    label: "Навар",
+    label: "Foyda",
     values: [item?.additionalProfitTotalSum],
   },
   {
-    label: "Объём",
+    label: "Hajm",
     values: [item?.totalSize],
   },
 ];
@@ -109,7 +109,7 @@ export default function BossKassa() {
           <FilterComboboxDemoInput
             isFilter={false}
             className="w-full  h-[36px] mb-[22px] bg-white rounded-[8px] border border-white"
-            placeholder="Все филиалы"
+            placeholder="Barcha filiallar"
             fetchUrl="/filial/warehouse-and-filial"
             name="filial"
             icons={
@@ -126,10 +126,10 @@ export default function BossKassa() {
         <div onClick={()=>{
              setSelect("MonthlyReportsKassaSingle");
              setKassaReportId(reportId);
-             setType("Приход");
+             setType("Kirim");
              setKassaId(null)
         }} className="px-5 cursor-pointer py-3 w-1/2 flex items-center border-border border-r gap-2.5">
-          <p className="text-[12px] text-[#62625F]">Приход</p>
+          <p className="text-[12px] text-[#62625F]">Kirim</p>
           <p className="text-[12px] text-[#89A143]">
             {cashflowForFilialManager?.income}
           </p>
@@ -137,10 +137,10 @@ export default function BossKassa() {
         <div onClick={()=>{
              setSelect("MonthlyReportsKassaSingle");
              setKassaReportId(reportId);
-             setType("Расход");
+             setType("Chiqim");
              setKassaId(null)
         }} className="px-5 cursor-pointer py-3 w-1/2 flex items-center gap-2.5">
-          <p className="text-[12px] text-[#62625F]">Расход</p>
+          <p className="text-[12px] text-[#62625F]">Chiqim</p>
           <p className="text-[12px] text-[#E38157]">
             {cashflowForFilialManager?.expense}
           </p>

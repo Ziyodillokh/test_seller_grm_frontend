@@ -31,7 +31,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
   const { mutate } = useOrderBasket({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasket] });
-      toast.success("Продукт добавлено успешно!");
+      toast.success("Mahsulot qo'shildi!");
       window.location.replace(import.meta.env.BASE_URL);
     },
   });
@@ -49,7 +49,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
       setFlashOn((prev) => !prev);
       await BarcodeScanner.enableTorch();
     } catch  {
-      toast.error("Фонарик не поддерживается на этом устройстве");
+      toast.error("Fonar bu qurilmada ishlamaydi");
     }
   };
 
@@ -58,7 +58,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
       if (Capacitor.isNativePlatform()) {
         const hasPermission = await checkAndRequestCameraPermission();
         if (!hasPermission) {
-          setError("Рухсат йўқ. Илтимос, камерага рухсат беринг.");
+          setError("Ruxsat yo'q. Iltimos, kameraga ruxsat bering.");
           return;
         }
         try {
@@ -70,10 +70,10 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
               window.location.replace(`${import.meta.env.BASE_URL}${link}?id=${barcodes[0].rawValue}&type=${type}&isTransfer=${isTransfer}`);
             }
           } else {
-            setError("Код не найден!");
+            setError("Kod topilmadi!");
           }
         } catch {
-          setError("Ошибка сканирования на нативной платформе.");
+          setError("Skaner xatosi");
         }
       } else {
         try {
@@ -161,7 +161,7 @@ export const QrBarcodeScanner = (props: ICodeProps) => {
                     isMetric: false,
                   });
                 } else {
-                  toast.error("Продукт не найден!");
+                  toast.error("Mahsulot topilmadi!");
                 }
               } else {
                 window.location.replace(`${import.meta.env.BASE_URL}${link}?id=${result}&type=${type}`);

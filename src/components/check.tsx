@@ -53,8 +53,8 @@ export default function CheckList({
         {format(new Date(), "EEE, MMM d, yyyy • HH:mm")}
       </p>
       <div className="flex items-center text-primary border-primary border-dashed border-b text-[15px] mt-[9px] pb-4 justify-between">
-        <p className="text-[10px]">Способ оплаты</p>
-        <p className="text-[10px]">Терминал, Наличие</p>
+        <p className="text-[10px]">To'lov turi</p>
+        <p className="text-[10px]">Terminal, Naqd</p>
       </div>
       <ul>
         {data &&
@@ -106,23 +106,23 @@ export default function CheckList({
           ))}
       </ul>
       <div className="flex items-center text-primary font-bold text-[12px] mt-[19px] pb-2 justify-between">
-        <p>Итого</p>
+        <p>Jami</p>
         <p>{total?.toFixed(2)} $</p>
       </div>
       <ul className="border-primary border-dashed border-y  pt-[11px] pb-[24px]">
         <li className="flex items-center text-primary text-[10px] mt-[14px] mb-[9px]  ">
-          <p className="w-full">Продавец:</p>
+          <p className="w-full">Sotuvchi:</p>
           <p className="w-full text-end">{username}</p>
         </li>
         <li className="flex items-center text-primary text-[10px]  mb-[9px]">
-          <p className="w-full">Адресс:</p>
+          <p className="w-full">Manzil:</p>
           <p className="w-full text-nowrap text-end">{address}</p>
         </li>
       </ul>
 
       <p className="text-[8px] font-light mt-[10px] ">
-        Мы благодарим вас за покупку ковра в нашем магазине. Пусть ваш новый
-        приобретенный товар приносит вам радость и уют в ваш дом!
+        Bizning do'kondan gilam xarid qilganingizdan minnatdormiz. Yangi
+        mahsulotingiz uyingizga shodlik va qulaylik olib kelsin!
       </p>
     </div>
   );

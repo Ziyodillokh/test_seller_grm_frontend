@@ -32,7 +32,7 @@ export default function InComePage() {
         limit: 10,
         page: 1,
         // search: search || undefined,
-        type:select =="inCome" ? "Приход" : "Расход",
+        type:select =="inCome" ? "Kirim" : "Chiqim",
         month: month  || undefined,
         year: +year || undefined,
       },
@@ -50,10 +50,10 @@ export default function InComePage() {
           personStatus="success"
           personName={item?.casher?.firstName}
           status={item?.title}
-          statusColor={  item?.type == "Приход"?`bg-[#89A143]`:"bg-[#E38157]"}
+          statusColor={  item?.type == "Kirim"?`bg-[#89A143]`:"bg-[#E38157]"}
             key={item?.id}
             iconComponent={
-              item?.type == "Приход"
+              item?.type == "Kirim"
                 ? () => (
                     <Plus
                       className={`p-3 w-12 h-12 text-white bg-[#89A143] rounded-[12px]`}
@@ -65,8 +65,8 @@ export default function InComePage() {
                     />
                   )
             }
-            price={item?.type == "Приход"? item?.price + " $"  :undefined }
-            priceSecond={item?.type == "Приход"? undefined:item?.price + "$"}
+            price={item?.type == "Kirim"? item?.price + " $"  :undefined }
+            priceSecond={item?.type == "Kirim"? undefined:item?.price + "$"}
             date={format(new Date(item?.date), "dd MMMM yyyy")}
             colums={colms2(item) }
           />

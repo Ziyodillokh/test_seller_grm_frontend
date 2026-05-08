@@ -114,7 +114,7 @@ export const UploadFile = ({
              minio_img_url +localUrl || undefined
            }/>:<>
             { isloading? <Loader className="text-primary text-[20px] w-[60px] h-[60px]" />: <ImageOff className="text-primary text-[20px] w-[60px] h-[60px]" />}
-             <p className="text-[18px] font-semibold text-primary mt-2">Нет фото</p></>
+             <p className="text-[18px] font-semibold text-primary mt-2">Foto yo'q</p></>
           }
         
         </div>

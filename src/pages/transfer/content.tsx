@@ -28,7 +28,7 @@ export default function TransferContent(props: IContentProps) {
   return (
     <>
       <div className="px-2.5 pt-[17px] mt-4 mb-4">
-      <QrTabs  qrCodeText="Отсканируйте штрих-код или QR-код." showBarcode="" type="transfer" link={"transfer"} />
+      <QrTabs  qrCodeText="Shtrix kod yoki QR kodni skanerlang." showBarcode="" type="transfer" link={"transfer"} />
         <SearchInput className="p-6 pl-5" />
       </div>
 

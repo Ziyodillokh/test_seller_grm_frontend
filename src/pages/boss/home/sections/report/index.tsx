@@ -8,43 +8,43 @@ import {   useKassaReport, useUserManagersAccountants } from "../../queries";
 
 // const colms2 = (item: KassaData) => [
 //   {
-//     label: "Продажа",
+//     label: "Sotuv",
 //     values: [
 //       item?.sale
 //     ],
 //   },
 //   {
-//     label: "Приход",
+//     label: "Kirim",
 //     values: [
 //         item?.income
 //     ],
 //   },
 //   {
-//     label: "Расход",
+//     label: "Chiqim",
 //     values: [
 //         item?.expense
 //     ],
 //   },
 //   {
-//     label: "Инкассация",
+//     label: "Inkassatsiya",
 //     values: [
 //         item?.cash_collection
 //     ],
 //   },
 //   {
-//     label: "Скидка",
+//     label: "Chegirma",
 //     values: [
 //         item?.discount
 //     ],
 //   },
 //   {
-//     label: "Навар",
+//     label: "Foyda",
 //     values: [
 //         item?.additionalProfitTotalSum
 //     ],
 //   },
 //   {
-//     label: "Объём",
+//     label: "Hajm",
 //     values: [
 //         item?.totalSize
 //     ],
@@ -86,7 +86,7 @@ export default function BossKassaReport() {
             personSecondStatus={(item?.status == "accepted"  || item?.status == "accountant_confirmed" ) ? "success" :"panding" }
             personSecond={AvatarData?.items?.[1]?.avatar?.path}
             personSecondName={AvatarData?.items?.[1]?.firstName}
-            status="Месяц закончился."
+            status="Oy tugadi."
             key={item?.id}
             onClick={() => {
               setSelect("MonthlyReportsKassa");
