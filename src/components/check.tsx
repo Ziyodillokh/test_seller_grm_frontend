@@ -80,7 +80,20 @@ export default function CheckList({
                 $
               </p>}
               {isclient ? (
-               <p className="w-full text-end">{ el?.price}</p>
+                <div className="w-full text-end">
+                  <p>{Number(el?.price || 0) + Number((el as any)?.plastic || 0) + Number((el as any)?.debtAmount || 0)}$</p>
+                  <div className="flex flex-col items-end gap-[1px] mt-[2px]">
+                    {Number(el?.price || 0) > 0 && (
+                      <span className="text-[9px] font-medium text-primary">Naqd: {Number(el.price).toFixed(2)}$</span>
+                    )}
+                    {Number((el as any)?.plastic || 0) > 0 && (
+                      <span className="text-[9px] font-medium text-[#0078D4]">Plastic: {Number((el as any).plastic).toFixed(2)}$</span>
+                    )}
+                    {Number((el as any)?.debtAmount || 0) > 0 && (
+                      <span className="text-[9px] font-medium text-[#EC6724]">Qarz: {Number((el as any).debtAmount).toFixed(2)}$</span>
+                    )}
+                  </div>
+                </div>
               ) : el?.product?.bar_code?.isMetric ? (
                 <p className="w-full text-end">
                   {Number(

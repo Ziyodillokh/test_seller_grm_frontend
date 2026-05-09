@@ -1,7 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { ChevronLeft } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import useBasketData from "@/pages/basket/list/queries.ts";
@@ -19,7 +17,6 @@ export default function CheckPage() {
       is_transfer:false
     }
   });
-  // const QueryClient = useQueryClient()
   const { mutate,isPending } = useMutation({
     mutationFn: async (data: IOrderBasked) => {
       return await orderBaskedPost(apiRoutes.orderBasketItem, data);
@@ -27,7 +24,6 @@ export default function CheckPage() {
     onSuccess: () => {
       toast.success("Qo'shildi");
       setIsSelled(true);
-      // QueryClient.invalidateQueries({ queryKey: [apiRoutes.orderBasketItem] });
     },
   });
 
@@ -35,15 +31,8 @@ export default function CheckPage() {
     mutate(data);
   };
 
-  const navigate = useNavigate();
   return (
     <>
-      <header className="flex  new t-10 z-10 mt-[19px]  items-center sticky top-0 left-0 w-full px-4 gap-2 py-[27px] bg-white shadow-md">
-      <div onClick={()=>navigate('/basket')} className="flex items-center gap-2 cursor-pointer">
-        <ChevronLeft />
-        <p className="text-[22px] font-medium">To'lov sahifasi</p>
-      </div>
-    </header>
       {isSelled ? (
         <CheckView />
       ) : (

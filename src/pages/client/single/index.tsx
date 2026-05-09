@@ -1,12 +1,13 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Banknote, Loader, Minus, Plus } from "lucide-react";
+import { format } from "date-fns";
 import { useState } from "react";
 import {  useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 import CheckList from "@/components/check";
 import { Button } from "@/components/ui/button";
-import {  UpdatePatchData } from "@/service/apiHelpers";
+import { getAllData, UpdatePatchData } from "@/service/apiHelpers";
 import { apiRoutes } from "@/service/apiRoutes";
 import { useMeStore } from "@/store/me-store";
 
@@ -26,6 +27,11 @@ export default function SingleCliennt() {
     queries: {
       clientId: id,
     },
+  });
+  const { data: visits } = useQuery<any[]>({
+    queryKey: ["/visit", id],
+    queryFn: () => getAllData<any[], { clientId?: string }>("/visit", { clientId: id }),
+    enabled: !!id,
   });
   const { mutate,isPending } = useMutation({
     mutationFn: async () => {
@@ -50,6 +56,20 @@ export default function SingleCliennt() {
 
   return (
     <div>
+      {visits && visits.length > 0 && (
+        <div className="bg-card rounded-[12px] p-3 mt-3 mb-1">
+          <p className="text-[12px] font-medium text-primary mb-1">Tashrif tarixi (no-purchase)</p>
+          <div className="flex flex-col gap-1">
+            {visits.slice(0, 5).map((v) => (
+              <div key={v.id} className="flex items-center justify-between text-[12px] text-primary/80">
+                <span>{format(new Date(v.createdAt || v.dateOne), "dd MMM yyyy HH:mm")}</span>
+                <span className="text-primary/50">{v.seller?.firstName} {v.seller?.lastName}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <CheckList
       isclient
         username={meUser?.firstName + " " + meUser?.lastName}

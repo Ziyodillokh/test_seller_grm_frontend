@@ -28,11 +28,18 @@ export default function FormContent() {
           placeholder="Telefon raqami"
         />
 
+        <FormTextInput
+          label="Manzil"
+          className="w-full"
+          name="address"
+          placeholder="Manzil"
+        />
+
         <FormTextArea
           label="Izoh"
           className="w-full"
           name="comment"
-          
+
           placeholder="Izoh"
         />
       </div>      

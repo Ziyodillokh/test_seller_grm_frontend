@@ -5,6 +5,7 @@ export type TData = {
     fullName:string
     phone: string;
     comment: string;
+    address?: string;
     given:number;
     owed:number;
     user: {
@@ -49,6 +50,7 @@ export type TData = {
       given: number;
       owed: number;
       comment: string;
+      address?: string;
     };
     orders: {
       items: ProductsData[];

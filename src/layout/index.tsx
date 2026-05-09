@@ -13,7 +13,7 @@ export default function Layout() {
   const pathname = useLocation();
   const navigate = useNavigate();
   const parmitionsUser = [12, 2, 0];
-  const notNeedHeaderPages = ["/re-report", "/basket/check"];
+  const notNeedHeaderPages = ["/re-report"];
 
   // Draggable floating button
   const [pos, setPos] = useState({ x: -1, y: -1 });

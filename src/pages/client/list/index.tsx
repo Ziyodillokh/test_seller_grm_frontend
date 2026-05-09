@@ -32,6 +32,8 @@ export default function ClientList() {
           phone={item?.phone}
           given={item?.given}
           owed={item?.owed}
+          address={item?.address}
+          seller={item?.user ? { firstName: item.user.firstName, lastName: item.user.lastName, phone: item.user.phone } : null}
           onClick={()=>navigate(`/client/${item?.id}`)}
           comment={item?.comment}
         />

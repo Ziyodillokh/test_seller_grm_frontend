@@ -101,6 +101,8 @@ export interface IOrderBasked {
   isDebt?: boolean;
   clientId?: string;
   debtAmount?: number;
+  isTransfer?: boolean;
+  transferRemainder?: number;
 }
 export const orderBaskedPost = async (url: string, data:IOrderBasked) => {
   try {
