@@ -209,12 +209,13 @@ export default function Content({ data, handleSubmit, isPending }: IContent) {
               ? () => {}
               : () => {
                   if (transferToggle) {
+                    // O'tkazma: orderlarning to'liq summasi (cart total) `price` ga, plasticSum=0
                     handleSubmit({
                       isTransfer: true,
                       transferRemainder: Math.max(transferRemainder || 0, 0),
                       clientId: selectedClient?.id,
                       comment: commit,
-                      price: 0,
+                      price: total,
                       plasticSum: 0,
                     });
                   } else {
